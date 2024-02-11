@@ -14,3 +14,11 @@
 @import url(blocks/header/__link/_type/_registration/header__link_type_registration.css);
 @import url(blocks/header/__link/_type/_login/header__link_type_login.css);
 @import url(blocks/header/__link/_type/_movies/header__link_type_movies.css);
+
+
+@import url(blocks/hero/hero.css);
+@import url(blocks/hero/__background/hero__background.css);
+@import url(blocks/hero/__title/hero__title.css);
+@import url(blocks/hero/__links/hero__links.css);
+@import url(blocks/hero/__link/hero__link.css);
+
