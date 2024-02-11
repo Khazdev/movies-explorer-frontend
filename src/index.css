@@ -22,3 +22,17 @@
 @import url(blocks/hero/__links/hero__links.css);
 @import url(blocks/hero/__link/hero__link.css);
 
+
+@import url(blocks/about/about.css);
+@import url(blocks/about/__title/about_title.css);
+@import url(blocks/about/__line/about__line.css);
+@import url(blocks/about/__grid-container/about__grid-container.css);
+@import url(blocks/about/__grid-container/_description/about__grid-container_description.css);
+@import url(blocks/about/__grid-container/_weeks/about__grid-container_weeks.css);
+@import url(blocks/about/__decription-title/about__description-title.css);
+@import url(blocks/about/__decription/about__description.css);
+@import url(blocks/about/__week-count/about__week-count.css);
+@import url(blocks/about/__week-count/_green/about__week-count_green.css);
+@import url(blocks/about/__week-count/_gray/about__week-count_gray.css);
+@import url(blocks/about/__technology/about__technology.css);
+

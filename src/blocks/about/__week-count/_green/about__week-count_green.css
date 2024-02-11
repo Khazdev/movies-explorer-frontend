@@ -1,0 +1,9 @@
+.about__week-count_green {
+  color: #000;
+  background-color: #3DDC84;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

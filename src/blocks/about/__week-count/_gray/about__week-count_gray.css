@@ -1,0 +1,9 @@
+.about__week-count_gray {
+  color: #fff;
+  background-color: #303030;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

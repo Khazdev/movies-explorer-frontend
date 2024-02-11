@@ -1,0 +1,6 @@
+.about__line {
+  border: 1px solid #DADADA;
+  display: flex;
+  width: 100%;
+  margin: 23px auto 70px;
+}

@@ -1,0 +1,5 @@
+.about__grid-container_description {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+}
