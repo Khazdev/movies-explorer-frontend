@@ -1,0 +1,10 @@
+.tech__list-element {
+  width: 90px;
+  height: 60px;
+  border-radius: 10px;
+  background: #303030;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

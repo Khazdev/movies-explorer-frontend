@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "./Hero";
 import About from "./About";
+import Tech from "./Tech";
 
 function Main() {
 
@@ -8,6 +9,7 @@ function Main() {
     <main>
       <Hero></Hero>
       <About></About>
+      <Tech></Tech>
     </main>
   );
 }

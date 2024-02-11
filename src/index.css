@@ -36,3 +36,13 @@
 @import url(blocks/about/__week-count/_gray/about__week-count_gray.css);
 @import url(blocks/about/__technology/about__technology.css);
 
+
+@import url(blocks/tech/tech.css);
+@import url(blocks/tech/__title/tech__title.css);
+@import url(blocks/tech/__line/tech__line.css);
+@import url(blocks/tech/__subtitle/tech__subtitle.css);
+@import url(blocks/tech/__description/tech__description.css);
+@import url(blocks/tech/__list/tech__list.css);
+@import url(blocks/tech/__list-element/tech__list-element.css);
+
+
