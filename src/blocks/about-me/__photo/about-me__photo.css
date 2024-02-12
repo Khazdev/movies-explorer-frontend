@@ -1,0 +1,4 @@
+.about-me__photo {
+  grid-column: 2 / span 1;
+  justify-self: end;
+}

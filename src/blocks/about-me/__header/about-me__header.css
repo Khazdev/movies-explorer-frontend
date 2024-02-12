@@ -1,10 +1,9 @@
-.tech__title {
+.about-me__header {
+  margin: 0;
   font-size: 22px;
+  font-weight: 400;
   line-height: 27px;
   letter-spacing: -0.04em;
   text-align: left;
   color: #fff;
-  font-weight: 400;
-  display: flex;
-  margin: 100px 0 0 0;
 }

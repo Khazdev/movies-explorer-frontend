@@ -4,6 +4,7 @@
 
 @import url(blocks/root/root.css);
 @import url(blocks/page/page.css);
+@import url(blocks/content/content.css);
 @import url(blocks/header/header.css);
 @import url(blocks/header/__logo/header__logo.css);
 @import url(blocks/header/__navigation/header__navigation.css);
@@ -44,5 +45,16 @@
 @import url(blocks/tech/__description/tech__description.css);
 @import url(blocks/tech/__list/tech__list.css);
 @import url(blocks/tech/__list-element/tech__list-element.css);
+
+
+@import url(blocks/about-me/about-me.css);
+@import url(blocks/about-me/__grid/about-me__grid.css);
+@import url(blocks/about-me/__content/about-me__content.css);
+@import url(blocks/about-me/__description/about-me__description.css);
+@import url(blocks/about-me/__title/about-me__title.css);
+@import url(blocks/about-me/subtitle/about-me__subtitle.css);
+@import url(blocks/about-me/__link/about-me__link.css);
+@import url(blocks/about-me/__header/about-me__header.css);
+@import url(blocks/about-me/__photo/about-me__photo.css);
 
 

@@ -1,0 +1,8 @@
+.about-me__grid {
+  margin: 70px 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /*gap: 20px;*/
+  column-gap: 0;
+  justify-content: space-between;
+}
