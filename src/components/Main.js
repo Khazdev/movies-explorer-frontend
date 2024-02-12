@@ -3,6 +3,7 @@ import Hero from "./Hero";
 import About from "./About";
 import Tech from "./Tech";
 import AboutMe from "./AboutMe";
+import Portfolio from "./Portfolio";
 
 function Main() {
 
@@ -12,6 +13,7 @@ function Main() {
       <About></About>
       <Tech></Tech>
       <AboutMe></AboutMe>
+      <Portfolio></Portfolio>
     </main>
   );
 }
