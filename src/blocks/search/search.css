@@ -1,0 +1,11 @@
+.search {
+  margin-top: 80px;
+}
+.search::after {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #424242;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,7 @@
+.search__toggle {
+  margin: 30px auto 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}

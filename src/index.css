@@ -17,6 +17,16 @@
 @import url(blocks/header/__link/_type/_movies/header__link_type_movies.css);
 
 
+@import url(blocks/search/search.css);
+@import url(blocks/search/__input-container/search__input-container.css);
+@import url(blocks/search/__input/search__input.css);
+@import url(blocks/search/__button/search__button.css);
+@import url(blocks/search/__toggle/search__toggle.css);
+@import url(blocks/search/__toggle-switch/search__toggle-switch.css);
+@import url(blocks/search/__toggle-checkbox/search__toggle-checkbox.css);
+@import url(blocks/search/__toggle-label/search__toggle-label.css);
+
+
 @import url(blocks/hero/hero.css);
 @import url(blocks/hero/__background/hero__background.css);
 @import url(blocks/hero/__title/hero__title.css);
