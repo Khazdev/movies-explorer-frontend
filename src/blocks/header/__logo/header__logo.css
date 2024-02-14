@@ -1,4 +1,5 @@
 .header__logo {
   size: 38px;
-  margin-left: 70px;
+  display: block;
+  object-fit: fill;
 }

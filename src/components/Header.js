@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Header({isSignedIn}) {
   return (
-    <header className="header">
+    <header className="header content">
       <Link
         className={'header__link'}
         to="/"
