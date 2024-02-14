@@ -4,8 +4,7 @@ function About() {
 
   return (
     <section className="about content">
-      <h3 className="about_title">О проекте</h3>
-      <div className="about__line"></div>
+      <h3 className="about__header">О проекте</h3>
       <div className="about__grid-container about__grid-container_description">
         <h4 className="about__description-title">Дипломный проект включал 5 этапов</h4>
         <h4 className="about__description-title">На выполнение диплома ушло 5 недель</h4>

@@ -25,8 +25,7 @@
 
 
 @import url(blocks/about/about.css);
-@import url(blocks/about/__title/about_title.css);
-@import url(blocks/about/__line/about__line.css);
+@import url(blocks/about/__header/about__header.css);
 @import url(blocks/about/__grid-container/about__grid-container.css);
 @import url(blocks/about/__grid-container/_description/about__grid-container_description.css);
 @import url(blocks/about/__grid-container/_weeks/about__grid-container_weeks.css);
@@ -39,8 +38,7 @@
 
 
 @import url(blocks/tech/tech.css);
-@import url(blocks/tech/__title/tech__title.css);
-@import url(blocks/tech/__line/tech__line.css);
+@import url(blocks/tech/__header/tech__header.css);
 @import url(blocks/tech/__subtitle/tech__subtitle.css);
 @import url(blocks/tech/__description/tech__description.css);
 @import url(blocks/tech/__list/tech__list.css);

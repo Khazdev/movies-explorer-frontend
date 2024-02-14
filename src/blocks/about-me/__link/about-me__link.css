@@ -1,5 +1,10 @@
 .about-me__link {
   text-decoration: none;
   color: #fff;
-  margin-top: auto
+  margin-top: auto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0;
+  text-align: left;
 }

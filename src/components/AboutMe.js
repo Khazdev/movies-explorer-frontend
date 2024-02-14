@@ -7,14 +7,13 @@ function AboutMe() {
   return (
     <section className="about-me content">
       <h3 className="about-me__header">Студент</h3>
-      <div className="about__line"></div>
       <div className="about-me__grid">
         <div className="about-me__content">
           <h2 className="about-me__title">Виталий</h2>
           <h4 className="about-me__subtitle">Фронтенд-разработчик, 30 лет</h4>
           <p className="about-me__description">Я&nbsp;родился и&nbsp;живу в&nbsp;Саратове, закончил факультет экономики
             СГУ. У&nbsp;меня есть жена
-            и&nbsp;дочь. Я&nbsp;люблю слушать музыку, а&nbsp;ещё увлекаюсь бегом. Недавно начал кодить. С&nbsp;2015 года
+            и&nbsp;дочь. Я&nbsp;люблю слушать музыку, а&nbsp;ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года
             работал в&nbsp;компании &laquo;СКБ Контур&raquo;. После того, как прошёл курс по&nbsp;веб-разработке, начал
             заниматься фриланс-заказами и&nbsp;ушёл с&nbsp;постоянной работы.</p>
           <Link className="about-me__link">Github</Link>
