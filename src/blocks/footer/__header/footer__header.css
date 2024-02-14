@@ -1,0 +1,17 @@
+.footer__header {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #8B8B8B;
+  margin: 0;
+}
+
+.footer__header::after {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #424242;
+  margin-top: 20px;
+}
