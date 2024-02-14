@@ -36,13 +36,15 @@ function Header({isSignedIn}) {
                 </li>
               </ul>
             </nav>
-            <Link
-              className={`header__link header__link_type_account`}
-              to="/"
-              onClick={console.log()}
-            >
-              Аккаунт
-            </Link>
+            <div className="header__auth">
+              <Link
+                className={`header__link header__link_type_account`}
+                to="/"
+                onClick={console.log()}
+              >
+                Аккаунт
+              </Link>
+            </div>
           </>
         )
         :(

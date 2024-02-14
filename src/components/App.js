@@ -4,9 +4,7 @@ import Main from "./Main";
 function App() {
   return (
     <>
-      <Header
-        isSignedIn={false}
-      ></Header>
+
       <Main>
       </Main>
     </>

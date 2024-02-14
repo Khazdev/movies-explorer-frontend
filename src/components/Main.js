@@ -5,11 +5,15 @@ import Tech from "./Tech";
 import AboutMe from "./AboutMe";
 import Portfolio from "./Portfolio";
 import Footer from "./Footer";
+import Header from "./Header";
 
 function Main() {
 
   return (
     <main>
+      <Header
+        isSignedIn={false}
+      ></Header>
       <Hero></Hero>
       <About></About>
       <Tech></Tech>
