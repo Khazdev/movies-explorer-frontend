@@ -1,0 +1,6 @@
+.movie-card__save-button {
+  position: absolute;
+  cursor: pointer;
+  top: 14px;
+  right: 14px;
+}

@@ -1,12 +1,11 @@
 .search__button {
   display: block;
+  object-fit: cover;
   background: url('../../../images/search.svg') no-repeat;
   width: 44px;
   height: 44px;
   border: none;
   align-self: center;
   padding: 0;
-  box-sizing: border-box;
-  object-fit: fill;
   cursor: pointer;
 }

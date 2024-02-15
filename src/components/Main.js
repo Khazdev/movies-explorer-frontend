@@ -1,6 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import SearchForm from "./SearchForm";
+import MoviesCardList from "./MoviesCardList";
+import Preloader from "./Preloader";
+import Footer from "./Footer";
 
 function Main() {
 
@@ -15,7 +18,10 @@ function Main() {
       {/*<AboutMe></AboutMe>*/}
       {/*<Portfolio></Portfolio>*/}
       {/*<Footer></Footer>*/}
-     <SearchForm></SearchForm>
+      <SearchForm></SearchForm>
+      <MoviesCardList></MoviesCardList>
+      <Preloader></Preloader>
+      <Footer></Footer>
     </main>
   );
 }

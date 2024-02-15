@@ -27,6 +27,21 @@
 @import url(blocks/search/__toggle-label/search__toggle-label.css);
 
 
+@import url(blocks/movies/movies.css);
+@import url(blocks/movies/__grid/movies__grid.css);
+
+@import url(blocks/movie-card/movie-card.css);
+@import url(blocks/movie-card/__photo/movie-card__photo.css);
+@import url(blocks/movie-card/__info-container/movie__info-container.css);
+@import url(blocks/movie-card/__description/movie-card__description.css);
+@import url(blocks/movie-card/__duration/movie-card__duration.css);
+@import url(blocks/movie-card/__save-button/movie-card__save-button.css);
+@import url(blocks/movie-card/__save-button/_state_not-saved/movie-card__save-button_state_not-saved.css);
+@import url(blocks/movie-card/__save-button/_state_saved/movie-card__save-button_state_saved.css);
+
+@import url(blocks/preloader/preloader.css);
+@import url(blocks/preloader/__button/preloader__button.css);
+
 @import url(blocks/hero/hero.css);
 @import url(blocks/hero/__background/hero__background.css);
 @import url(blocks/hero/__title/hero__title.css);
