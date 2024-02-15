@@ -39,6 +39,8 @@
 @import url(blocks/movie-card/__save-button/_state_not-saved/movie-card__save-button_state_not-saved.css);
 @import url(blocks/movie-card/__save-button/_state_saved/movie-card__save-button_state_saved.css);
 
+@import url(blocks/movie-card/__del-button/movie-card__del-button.css);
+
 @import url(blocks/preloader/preloader.css);
 @import url(blocks/preloader/__button/preloader__button.css);
 

@@ -1,13 +1,20 @@
 import MoviesCard from "./MoviesCard";
+import { movies } from "../constants/movies"
 
-export function MoviesCardList() {
+
+export function MoviesCardList({allMoviesFlag}) {
   return (
     <section className="movies content">
       <ul className="movies__grid">
-        <MoviesCard></MoviesCard>
-        <MoviesCard></MoviesCard>
-        <MoviesCard></MoviesCard>
-        <MoviesCard></MoviesCard>
+        {movies.map((movie) => (
+          <MoviesCard
+            saved={movie.saved}
+            movieName={movie.movieName}
+            duration={movie.duration}
+            image={movie.imageUrl}
+            allMoviesFlag={allMoviesFlag}
+          />
+        ))}
       </ul>
     </section>
   );
