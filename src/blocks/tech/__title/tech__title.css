@@ -1,9 +1,15 @@
-.tech__subtitle {
+.tech__title {
   font-size: 50px;
   font-weight: 400;
   line-height: 58px;
   letter-spacing: -0.04em;
   text-align: center;
   color: #fff;
-  margin: 0 0 26px;
+  margin: 90px 0 26px;
+}
+
+@media screen and (max-width: 990px) {
+  .tech__title {
+    margin: 80px 0 22px;
+  }
 }

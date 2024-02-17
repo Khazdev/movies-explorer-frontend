@@ -7,3 +7,9 @@
   text-align: left;
   color: #fff;
 }
+@media screen and (max-width: 990px) {
+  .about-me__subtitle {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}

@@ -7,3 +7,10 @@
   margin-bottom: 100px;
   padding: 0;
 }
+
+@media screen and (max-width: 990px) {
+  .tech__list {
+    margin-bottom: 90px;
+  }
+}
+

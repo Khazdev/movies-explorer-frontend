@@ -1,9 +1,15 @@
 .hero__background {
   width: 1200px;
-  height: 493px;
+  /*height: 493px;*/
   border-radius: 10px;
   background-color: #272727;
   margin: 20px 40px 0;
   display: flex;
   flex-direction: column;
+}
+@media screen and (max-width: 990px) {
+  .hero__background {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
 }

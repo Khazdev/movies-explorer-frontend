@@ -1,4 +1,14 @@
 .about-me__photo {
   grid-column: 2 / span 1;
   justify-self: end;
+  max-width: 270px;
+  max-height: 327px;
+  display: block;
+  object-fit: fill;
+}
+@media screen and (max-width: 990px) {
+  .about-me__photo {
+    max-width: 255px;
+    max-height: 307px;
+  }
 }

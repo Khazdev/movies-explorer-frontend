@@ -13,3 +13,12 @@
   letter-spacing: -0.04em;
   text-align: center;
 }
+
+@media screen and (max-width: 990px) {
+  .tech__list-element {
+    width: 84px;
+    height: 57px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
