@@ -2,5 +2,9 @@
   display: grid;
   margin-bottom: 110px;
   width: 100%;
-  margin-top: 70px;
+}
+@media screen and (max-width: 990px) {
+  .about__grid-container {
+    margin-bottom: 90px;
+  }
 }
