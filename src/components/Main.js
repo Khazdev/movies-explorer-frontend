@@ -1,17 +1,14 @@
 import React from "react";
 import Header from "./Header";
-import Footer from "./Footer";
-import Movies from "./Movies";
-import SavedMovies from "./SavedMovies";
-import Register from "./Profile";
+import Register from "./Register";
 
 function Main() {
 
   return (
     <main>
-      <Header
-        isSignedIn={false}
-      ></Header>
+      {/*<Header*/}
+      {/*  isSignedIn={false}*/}
+      {/*></Header>*/}
       {/*<Hero></Hero>*/}
       {/*<About></About>*/}
       {/*<Tech></Tech>*/}

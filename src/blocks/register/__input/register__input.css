@@ -1,0 +1,28 @@
+.register__input {
+  padding: 0 0 0 15px;
+  border: none;
+  height: 46px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: left;
+  background-color: #2F2F2F;
+  color: #fff;
+}
+
+.register__input:focus {
+  font-weight: 500;
+}
+
+.register__input:focus-visible {
+  outline: none;
+}
+
+.register__input:invalid {
+  color: #EE3465;
+}
+.register__input:valid {
+  color: #fff;
+}

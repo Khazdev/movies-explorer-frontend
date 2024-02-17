@@ -1,0 +1,15 @@
+.register__sign-in-button {
+  width: fit-content;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #4285F4;
+  margin: 0 0 0 6px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 400;
+}

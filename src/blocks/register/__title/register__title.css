@@ -1,0 +1,5 @@
+.register__title {
+  /*display: flex;*/
+  align-self: flex-start;
+  margin: 40px 0;
+}
