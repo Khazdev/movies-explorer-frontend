@@ -114,3 +114,10 @@
 @import url(blocks/auth-form/__submit-button/_disabled/auth-form__submit-button_disabled.css);
 @import url(blocks/auth-form/__transition-text/auth-form__transition-text.css);
 @import url(blocks/auth-form/__transition-link/auth-form__transition-link.css);
+
+
+@import url(blocks/not-found/not-found.css);
+@import url(blocks/not-found/__title/not-found__title.css);
+@import url(blocks/not-found/__text/not-found__text.css);
+@import url(blocks/not-found/__back-button/not-found__back-button.css);
+

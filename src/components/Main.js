@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Register from "./Register";
 import Login from "./Login";
+import NotFound from "./NotFound";
 
 function Main() {
 
@@ -19,7 +20,7 @@ function Main() {
       {/*<Movies></Movies>*/}
       {/*<SavedMovies></SavedMovies>*/}
       {/*<Footer></Footer>*/}
-      <Login></Login>
+      <NotFound></NotFound>
     </main>
   );
 }
