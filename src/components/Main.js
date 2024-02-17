@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Movies from "./Movies";
 import SavedMovies from "./SavedMovies";
+import Register from "./Profile";
 
 function Main() {
 
@@ -17,9 +18,10 @@ function Main() {
       {/*<AboutMe></AboutMe>*/}
       {/*<Portfolio></Portfolio>*/}
       {/*<Footer></Footer>*/}
-      <Movies></Movies>
+      {/*<Movies></Movies>*/}
       {/*<SavedMovies></SavedMovies>*/}
-      <Footer></Footer>
+      {/*<Footer></Footer>*/}
+      <Register></Register>
     </main>
   );
 }

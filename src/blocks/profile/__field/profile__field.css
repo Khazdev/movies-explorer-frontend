@@ -1,0 +1,11 @@
+.profile__field {
+  display: flex;
+  justify-content: space-between;
+  max-width: 410px;
+  width: 100%;
+}
+
+.profile__field:not(:last-child) {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 20px;
+}

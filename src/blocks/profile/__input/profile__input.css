@@ -1,0 +1,16 @@
+.profile__input {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  letter-spacing: 0;
+  text-align: right;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  appearance: none;
+  outline: none;
+  cursor: text;
+  color: #fff;
+}

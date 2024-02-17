@@ -1,0 +1,6 @@
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  width: 410px;
+  margin-top: 125px;
+}
