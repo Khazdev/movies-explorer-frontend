@@ -1,4 +1,4 @@
-.register__input {
+.auth-form__input {
   padding: 0 0 0 15px;
   border: none;
   height: 46px;
@@ -12,17 +12,17 @@
   color: #fff;
 }
 
-.register__input:focus {
+.auth-form__input:focus {
   font-weight: 500;
 }
 
-.register__input:focus-visible {
+.auth-form__input:focus-visible {
   outline: none;
 }
 
-.register__input:invalid {
+.auth-form__input:invalid {
   color: #EE3465;
 }
-.register__input:valid {
+.auth-form__input:valid {
   color: #fff;
 }

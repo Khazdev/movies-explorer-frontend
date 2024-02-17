@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Register from "./Register";
+import Login from "./Login";
 
 function Main() {
 
@@ -18,7 +19,7 @@ function Main() {
       {/*<Movies></Movies>*/}
       {/*<SavedMovies></SavedMovies>*/}
       {/*<Footer></Footer>*/}
-      <Register></Register>
+      <Login></Login>
     </main>
   );
 }

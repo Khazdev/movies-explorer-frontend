@@ -1,9 +1,0 @@
-.register__field {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.profile__field input:invalid {
-  color: #EE3465;
-}
