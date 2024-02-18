@@ -6,3 +6,10 @@
   text-align: left;
   color: #fff;
 }
+
+@media screen and (max-width: 690px) {
+  .movie-card__description {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

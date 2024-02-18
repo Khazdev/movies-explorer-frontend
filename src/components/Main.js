@@ -20,15 +20,15 @@ function Main() {
       <Header
         isSignedIn={true}
       ></Header>
-      <Hero></Hero>
-      <About></About>
-      <Tech></Tech>
-      <AboutMe></AboutMe>
-      <Portfolio></Portfolio>
-      <Footer></Footer>
-      {/*<Movies></Movies>*/}
-      {/*<SavedMovies></SavedMovies>*/}
+      {/*<Hero></Hero>*/}
+      {/*<About></About>*/}
+      {/*<Tech></Tech>*/}
+      {/*<AboutMe></AboutMe>*/}
+      {/*<Portfolio></Portfolio>*/}
       {/*<Footer></Footer>*/}
+      {/*<Movies></Movies>*/}
+      <SavedMovies></SavedMovies>
+      <Footer></Footer>
       {/*<NotFound></NotFound>*/}
       {/*<Profile></Profile>*/}
       {/*<Register></Register>*/}
