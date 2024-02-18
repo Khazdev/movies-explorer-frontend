@@ -9,10 +9,16 @@ function Footer() {
         <p className="footer__copyright">&copy; 2024</p>
         <ul className="footer__list">
           <li className="footer__list-item">
-            <Link className="footer__link">Яндекс.Практикум</Link>
+            <Link className="footer__link"
+                  to="https://practicum.yandex.ru/"
+                  target="_blank"
+            >Яндекс.Практикум</Link>
           </li>
           <li className="footer__list-item">
-            <Link className="footer__link">Github</Link>
+            <Link className="footer__link"
+                  to="https://github.com/Khazdev/"
+                  target="_blank"
+            >Github</Link>
           </li>
         </ul>
       </div>

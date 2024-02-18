@@ -1,7 +1,10 @@
 import logo from "../images/logo.svg";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import  burger  from "../images/burger.svg"
+import burger from "../images/burger.svg"
+import Navigation from "./Navigation";
+import BurgerMenu from "./BrugerMenu";
+import Account from "./Account";
 
 function Header({isSignedIn}) {
 
@@ -28,64 +31,46 @@ function Header({isSignedIn}) {
     };
   }, []);
 
-  const isMobile = windowWidth <= 768;
+  const isMobile = windowWidth <= 990;
 
   return (
     <header className="header">
       <Link className="header__link" to="/">
-        <img className="header__logo" src={logo} alt="Лого" />
+        <img className="header__logo" src={logo} alt="Лого"/>
       </Link>
-      {console.log(isMobile)}
       {isSignedIn ? (
         isMobile ? (
-          <button
-            className="header__burger-menu"
-            type="button"
-            aria-label="Открыть меню"
-            onClick={handleOpenMobileMenu}
-          >
-            <img
-              className="header__burger-icon"
-              src={burger}
-              alt="кнопка меню"
-            ></img>
-          </button>
+          <>
+            <button
+              className="header__burger-menu"
+              type="button"
+              aria-label="Открыть меню"
+              onClick={handleOpenMobileMenu}
+            >
+              <img
+                className="header__burger-icon"
+                src={burger}
+                alt="кнопка меню"
+              ></img>
+            </button>
+            {console.log("ATTENTION")}
+            {console.log(isMobileMenuOpen)}
+            {isMobileMenuOpen && <BurgerMenu
+              isMobileMenuOpen={isMobileMenuOpen}
+              handleCloseMobileMenu={handleCloseMobileMenu}
+              handleOpenMobileMenu={handleOpenMobileMenu}
+            ></BurgerMenu>}
+          </>
+          // )
         ):(
           <>
-            <nav className="header__navigation">
-              <ul className="header__links">
-                <li>
-                  <Link
-                    className="header__link header__link_type_movies"
-                    to="/"
-                    onClick={console.log()}
-                  >
-                    Фильмы
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="header__link header__link_type_movies"
-                    to="/"
-                    onClick={console.log()}
-                  >
-                    Сохранённые фильмы
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+            <Navigation></Navigation>
             <div className="header__auth">
-              <Link
-                className="header__link header__link_type_account"
-                to="/"
-                onClick={console.log()}
-              >
-                Аккаунт
-              </Link>
+              <Account></Account>
             </div>
           </>
         )
-      ) : (
+      ):(
         <div className="header__auth">
           <Link
             className="header__link header__link_type_registration"

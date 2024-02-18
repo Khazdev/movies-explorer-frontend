@@ -5,3 +5,10 @@
   letter-spacing: 0;
   text-align: center;
 }
+
+@media screen and (max-width: 690px) {
+  .not-found__text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

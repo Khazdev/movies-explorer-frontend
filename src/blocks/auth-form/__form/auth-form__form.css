@@ -5,3 +5,10 @@
   min-height: 414px;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 690px) {
+  .auth-form__form {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}

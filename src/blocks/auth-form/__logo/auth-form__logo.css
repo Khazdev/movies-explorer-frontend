@@ -3,3 +3,9 @@
   object-fit: fill;
   align-self: flex-start;
 }
+
+@media screen and (max-width: 690px) {
+  .auth-form__logo {
+    align-self: center;
+  }
+}

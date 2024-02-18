@@ -1,0 +1,8 @@
+.burger-menu__close-button {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
