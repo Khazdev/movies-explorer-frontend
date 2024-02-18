@@ -1,5 +1,6 @@
 import logo from "../images/logo.svg";
 import { Link } from "react-router-dom";
+import React from "react";
 
 export function AuthForm({
                            fields,
@@ -8,7 +9,9 @@ export function AuthForm({
                          }) {
   return (
     <section className="auth-form">
-      <img className="auth-form__logo" src={logo} alt=""/>
+      <Link className="auth-form__logo" to="/">
+        <img src={logo} alt="Лого"/>
+      </Link>
       <h1 className="auth-form__title">{titleText}</h1>
       <form className="auth-form__form" onSubmit={() => {
       }} noValidate={true}>
