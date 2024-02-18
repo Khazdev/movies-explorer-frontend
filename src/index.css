@@ -14,6 +14,8 @@
 @import url(blocks/header/__link/_type/_registration/header__link_type_registration.css);
 @import url(blocks/header/__link/_type/_login/header__link_type_login.css);
 @import url(blocks/header/__link/_type/_movies/header__link_type_movies.css);
+@import url(blocks/header/__burger-menu/header__burger-menu.css);
+@import url(blocks/header/__burger-icon/header__burger-icon.css);
 
 @import url(blocks/search/search.css);
 @import url(blocks/search/__input-container/search__input-container.css);

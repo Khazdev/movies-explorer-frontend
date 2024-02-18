@@ -9,11 +9,9 @@
   border-radius: 30px;
   background-color: #313131;
   background-image: url("../../../images/xbutton.svg");
-  background-size: 8px; /* Set the width and height of the background image */
-  /*transform: rotate(45deg); !* Set the angle of the background image *!*/
+  background-size: 8px;
   background-repeat: no-repeat;
   background-position: center;
   border: none;
   visibility: hidden;
-  /*background-color: transparent;*/
 }
