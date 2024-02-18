@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Portfolio() {
 
   return (
-    <section className="portfolio content">
+    <section className="portfolio">
       <h3 className="portfolio__header">Портфолио</h3>
       <ul className="portfolio__list">
         <li className="portfolio__item">

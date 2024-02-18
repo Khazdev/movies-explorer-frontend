@@ -3,3 +3,9 @@
   font-weight: 500;
   margin-bottom: 70px;
 }
+
+@media screen and (max-width: 990px) {
+  .profile__button_sign-out {
+    margin-bottom: 270px;
+  }
+}

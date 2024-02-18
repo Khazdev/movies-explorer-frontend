@@ -1,6 +1,6 @@
 export function SearchForm() {
   return (
-    <section className="search content">
+    <section className="search">
       <form className="search__form">
         <div className="search__input-container">
           <input className="search__input" type="search" placeholder="Фильм" required/>

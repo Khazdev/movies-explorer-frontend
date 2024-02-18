@@ -4,7 +4,7 @@ import { movies } from "../constants/movies"
 
 export function MoviesCardList({allMoviesFlag}) {
   return (
-    <section className="movies content">
+    <section className="movies">
       <ul className="movies__grid">
         {movies.map((movie) => (
           <MoviesCard

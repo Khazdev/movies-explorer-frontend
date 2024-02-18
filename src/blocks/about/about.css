@@ -1,5 +1,13 @@
 .about {
   display: flex;
   flex-direction: column;
+  margin-right: 70px;
+  margin-left: 70px;
 }
 
+@media screen and (max-width: 990px) {
+  .about {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+}

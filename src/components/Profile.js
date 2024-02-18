@@ -22,7 +22,7 @@ export function Profile() {
           Редактировать
         </button>
         <button
-          type="button "
+          type="button"
           className="profile__button profile__button_sign-out"
           // disabled
         >

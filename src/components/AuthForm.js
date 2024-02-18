@@ -1,14 +1,17 @@
 import logo from "../images/logo.svg";
 import { Link } from "react-router-dom";
 
-export function AuthForm({ fields,
+export function AuthForm({
+                           fields,
                            inputTypes, placeholders, submitText, transitionText, titleText,
-                           transitionLink, transitionLinkText}) {
+                           transitionLink, transitionLinkText
+                         }) {
   return (
     <section className="auth-form">
-      <img className="auth-form__logo" src={logo} alt="" />
+      <img className="auth-form__logo" src={logo} alt=""/>
       <h1 className="auth-form__title">{titleText}</h1>
-      <form className="auth-form__form" onSubmit={() => {}} noValidate={true}>
+      <form className="auth-form__form" onSubmit={() => {
+      }} noValidate={true}>
         <ul className="auth-form__fields">
           {fields.map((field, index) => (
             <li className="auth-form__field" key={index}>
@@ -17,7 +20,8 @@ export function AuthForm({ fields,
                 className="auth-form__input"
                 type={inputTypes[index]}
                 placeholder={placeholders[index]}
-                onChange={() => {}}
+                onChange={() => {
+                }}
                 required
               />
               <span className="auth-form__input_error auth-form__input_error_visible">
@@ -26,18 +30,20 @@ export function AuthForm({ fields,
             </li>
           ))}
         </ul>
-        <button
-          type="submit"
-          className="auth-form__submit-button auth-form__submit-button_disabled"
-          disabled={true}
-        >
-          {submitText}
-        </button>
-        <div className="auth-form__transition-text">
-          {transitionText}{" "}
-          <Link to={transitionLink} className="auth-form__transition-link">
-            {transitionLinkText}
-          </Link>
+        <div className="auth-form_buttons-container">
+          <button
+            type="submit"
+            className="auth-form__submit-button auth-form__submit-button_disabled"
+            disabled={true}
+          >
+            {submitText}
+          </button>
+          <div className="auth-form__transition-text">
+            {transitionText}{" "}
+            <Link to={transitionLink} className="auth-form__transition-link">
+              {transitionLinkText}
+            </Link>
+          </div>
         </div>
       </form>
     </section>

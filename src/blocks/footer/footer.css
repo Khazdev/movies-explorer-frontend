@@ -2,4 +2,12 @@
   margin-top: 80px;
   display: flex;
   flex-direction: column;
+  margin-right: 70px;
+  margin-left: 70px;
+}
+@media screen and (max-width: 990px) {
+  .footer {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
 }

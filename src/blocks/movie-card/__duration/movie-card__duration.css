@@ -5,7 +5,7 @@
   letter-spacing: 0;
   text-align: center;
   color: #8B8B8B;
-  min-height: 18px;
+  max-height: 18px;
   min-width: 52px;
   border-radius: 3px;
   background-color: #2F2F2F;

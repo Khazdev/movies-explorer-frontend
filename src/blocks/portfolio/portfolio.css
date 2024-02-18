@@ -1,4 +1,10 @@
 .portfolio {
-  margin-top: 100px;
-  margin-bottom: 130px;
+  margin: 100px 70px 130px;
+}
+
+@media screen and (max-width: 990px) {
+  .portfolio {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
 }

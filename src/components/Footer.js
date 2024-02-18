@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="footer content">
+    <footer className="footer">
       <h3 className="footer__header">Учебный проект Яндекс.Практикум х BeatFilm.</h3>
       <div className="footer__container">
         <p className="footer__copyright">&copy; 2024</p>
