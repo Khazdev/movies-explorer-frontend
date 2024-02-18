@@ -6,3 +6,9 @@
   text-align: center;
   color: #8B8B8B;
 }
+@media screen and (max-width: 690px) {
+  .about__technology {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

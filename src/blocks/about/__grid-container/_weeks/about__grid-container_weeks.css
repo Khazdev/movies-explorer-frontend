@@ -5,3 +5,10 @@
   justify-content: center;
   text-align: center;
 }
+
+@media screen and (max-width: 690px) {
+  .about__grid-container_weeks {
+    grid-template-columns: 35% 65%;
+    margin-bottom: 70px;
+  }
+}

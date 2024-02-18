@@ -8,3 +8,11 @@
   margin: 0 0 50px;
   width: 100%;
 }
+
+@media screen and (max-width: 690px) {
+  .portfolio__header {
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

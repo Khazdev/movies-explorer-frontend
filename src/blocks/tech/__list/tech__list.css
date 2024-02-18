@@ -14,3 +14,13 @@
   }
 }
 
+@media screen and (max-width: 690px) {
+  .tech__list {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 94px);
+    gap: 10px;
+    margin-bottom: 70px;
+  }
+}

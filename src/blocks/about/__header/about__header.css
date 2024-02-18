@@ -23,3 +23,12 @@
     margin-top: 90px;
   }
 }
+
+@media screen and (max-width: 690px) {
+  .about__header {
+    margin-top: 70px;
+  }
+  .about__header::after {
+    margin-top: 28px;
+  }
+}

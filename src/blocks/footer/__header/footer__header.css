@@ -15,3 +15,10 @@
   border-bottom: 1px solid #424242;
   margin-top: 20px;
 }
+
+@media screen and (max-width: 690px) {
+  .footer__header {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

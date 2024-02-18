@@ -53,6 +53,7 @@
 @import url(blocks/about/__grid-container/about__grid-container.css);
 @import url(blocks/about/__grid-container/_description/about__grid-container_description.css);
 @import url(blocks/about/__grid-container/_weeks/about__grid-container_weeks.css);
+@import url(blocks/about/__description-column/about__description-column.css);
 @import url(blocks/about/__decription-title/about__description-title.css);
 @import url(blocks/about/__decription/about__description.css);
 @import url(blocks/about/__week-count/about__week-count.css);

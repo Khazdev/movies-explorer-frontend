@@ -14,3 +14,10 @@
     line-height: 18px;
   }
 }
+@media screen and (max-width: 690px) {
+  .about-me__description {
+    font-size: 11px;
+    line-height: 16px;
+    margin-top: 20px;
+  }
+}

@@ -4,3 +4,10 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+@media screen and (max-width: 690px) {
+  .footer__container {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+  }
+}

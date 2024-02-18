@@ -7,3 +7,10 @@
   color: #fff;
   margin: 0;
 }
+
+@media screen and (max-width: 690px) {
+  .about__description-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

@@ -2,4 +2,12 @@
   size: 44px;
   display: block;
   background-color: #202020;
+  object-fit: fill;
+}
+
+@media screen and (max-width: 690px) {
+  .header__burger-icon {
+    width: 40px;
+    height: 43px;
+  }
 }

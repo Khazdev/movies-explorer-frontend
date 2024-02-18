@@ -1,6 +1,6 @@
 .hero__background {
-  width: 1200px;
-  /*height: 493px;*/
+  max-width: 1200px;
+  width: 100%;
   border-radius: 10px;
   background-color: #272727;
   margin: 20px 40px 0;
@@ -11,5 +11,12 @@
   .hero__background {
     margin-right: 20px;
     margin-left: 20px;
+  }
+}
+@media screen and (max-width: 690px) {
+  .hero__background {
+    margin-right: 14px;
+    margin-left: 14px;
+    margin-top: 14px;
   }
 }

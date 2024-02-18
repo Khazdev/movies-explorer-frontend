@@ -14,3 +14,12 @@
   min-height: 36px;
   min-width: 96px;
 }
+
+@media screen and (max-width: 690px) {
+  .hero__link {
+    min-height: 26px;
+    min-width: 82px;
+    font-size: 10px;
+  }
+}
+

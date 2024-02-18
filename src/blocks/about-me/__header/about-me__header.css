@@ -15,5 +15,15 @@
   display: block;
   width: 100%;
   border-bottom: 1px solid #DADADA;
-  margin-top: 25px;
+  margin-top: 23px;
+}
+
+@media screen and (max-width: 690px) {
+  .about-me__header::after {
+    margin-top: 28px;
+  }
+  .about-me__header {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }

@@ -10,3 +10,16 @@
     grid-template-columns: 364px 1fr;
   }
 }
+
+@media screen and (max-width: 690px) {
+  .about-me__grid {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-items: center;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+}

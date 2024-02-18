@@ -6,3 +6,10 @@
   letter-spacing: 0;
   text-align: center;
 }
+
+@media screen and (max-width: 690px) {
+  .about__week-count {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

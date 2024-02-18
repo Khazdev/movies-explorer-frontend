@@ -11,3 +11,10 @@
     margin-left: 50px;
   }
 }
+
+@media screen and (max-width: 690px) {
+  .about {
+    margin-right: 18px;
+    margin-left: 18px;
+  }
+}

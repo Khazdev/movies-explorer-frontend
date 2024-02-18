@@ -13,3 +13,9 @@
     line-height: 40px;
   }
 }
+@media screen and (max-width: 690px) {
+  .about-me__title {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}

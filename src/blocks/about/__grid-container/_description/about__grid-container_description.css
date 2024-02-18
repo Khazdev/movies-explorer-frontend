@@ -1,7 +1,14 @@
 .about__grid-container_description {
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, min-content);
+  grid-template-columns: 1fr 1fr;
   column-gap: 40px;
   row-gap: 26px;
   margin-top: 70px;
+}
+
+@media screen and (max-width: 690px) {
+  .about__grid-container_description {
+    grid-template-columns: 1fr;
+    margin-top: 60px;
+    column-gap: 56px;
+  }
 }
