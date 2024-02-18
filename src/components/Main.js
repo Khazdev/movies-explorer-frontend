@@ -12,7 +12,7 @@ function Main() {
   return (
     <main>
       <Header
-        isSignedIn={true}
+        isSignedIn={false}
       ></Header>
       <Hero></Hero>
       <About></About>

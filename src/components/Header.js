@@ -53,15 +53,12 @@ function Header({isSignedIn}) {
                 alt="кнопка меню"
               ></img>
             </button>
-            {console.log("ATTENTION")}
-            {console.log(isMobileMenuOpen)}
             {isMobileMenuOpen && <BurgerMenu
               isMobileMenuOpen={isMobileMenuOpen}
               handleCloseMobileMenu={handleCloseMobileMenu}
               handleOpenMobileMenu={handleOpenMobileMenu}
             ></BurgerMenu>}
           </>
-          // )
         ):(
           <>
             <Navigation></Navigation>
@@ -74,14 +71,14 @@ function Header({isSignedIn}) {
         <div className="header__auth">
           <Link
             className="header__link header__link_type_registration"
-            to="/"
+            to="/signup"
             onClick={console.log()}
           >
             Регистрация
           </Link>
           <Link
             className="header__link header__link_type_login"
-            to="/"
+            to="/signin"
             onClick={console.log()}
           >
             Войти

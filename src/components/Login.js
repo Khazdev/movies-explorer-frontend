@@ -7,7 +7,7 @@ export function Login() {
   const submitText = "Войти";
   const transitionText = "Ещё не зарегистрированы?";
   const titleText = "Рады видеть!";
-  const transitionLink = "/sign-up";
+  const transitionLink = "/signup";
   const transitionLinkText = "Регистрация";
 
   return (
