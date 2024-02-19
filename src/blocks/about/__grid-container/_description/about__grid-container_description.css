@@ -9,6 +9,6 @@
   .about__grid-container_description {
     grid-template-columns: 1fr;
     margin-top: 60px;
-    column-gap: 56px;
+    row-gap: 56px;
   }
 }

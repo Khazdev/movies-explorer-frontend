@@ -2,3 +2,8 @@
   display: flex;
   gap: 30px;
 }
+@media screen and (max-width: 690px) {
+  .header__auth {
+    gap: 14px;
+  }
+}

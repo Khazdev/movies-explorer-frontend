@@ -27,6 +27,8 @@
 @media screen and (max-width: 690px) {
   .about__header {
     margin-top: 70px;
+    font-size: 18px;
+    line-height: 22px;
   }
   .about__header::after {
     margin-top: 28px;

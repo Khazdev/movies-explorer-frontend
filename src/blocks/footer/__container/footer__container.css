@@ -6,8 +6,9 @@
 }
 @media screen and (max-width: 690px) {
   .footer__container {
+    margin-top: 27px;
     flex-direction: column-reverse;
     align-items: center;
-    gap: 30px;
+    gap: 27px;
   }
 }

@@ -5,3 +5,11 @@
   text-align: right;
   display: flex;
 }
+
+@media screen and (max-width: 690px) {
+  .header__link_type_registration {
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+}

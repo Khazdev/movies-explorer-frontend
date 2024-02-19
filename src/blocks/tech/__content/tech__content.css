@@ -14,5 +14,6 @@
   .tech__content {
     margin-right: 18px;
     margin-left: 18px;
+    align-items: center;
   }
 }

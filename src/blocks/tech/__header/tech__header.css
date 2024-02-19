@@ -27,9 +27,14 @@
 @media screen and (max-width: 690px) {
   .tech__header {
     margin-top: 70px;
+    font-size: 18px;
+    line-height: 22px;
   }
 
   .tech__header::after {
-    border-bottom: 1px solid #000000;
+    content: "";
+    display: block;
+    width: 100%;
+    border-bottom: 2px solid #000000;
   }
 }
