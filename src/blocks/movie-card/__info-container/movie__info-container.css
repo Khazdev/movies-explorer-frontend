@@ -6,11 +6,16 @@
   margin-right: 14px;
   margin-top: 14px;
 }
+@media screen and (max-width: 990px) {
+  .movie__info-container {
+    margin-top: 25px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
 
 @media screen and (max-width: 690px) {
   .movie__info-container {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 16px;
+    margin-top: 20px;
   }
 }

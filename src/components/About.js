@@ -16,8 +16,6 @@ function About() {
           <p className="about__description">У&nbsp;каждого этапа был мягкий и&nbsp;жёсткий дедлайн, которые нужно было
             соблюдать, чтобы успешно защититься.</p>
         </div>
-
-
       </div>
       <div className="about__grid-container about__grid-container_weeks">
         <h4 className="about__week-count about__week-count_green">1 неделя</h4>

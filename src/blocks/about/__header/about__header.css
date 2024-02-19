@@ -22,6 +22,9 @@
   .about__header {
     margin-top: 90px;
   }
+  .about__header::after {
+    margin-top: 23px;
+  }
 }
 
 @media screen and (max-width: 690px) {

@@ -13,5 +13,15 @@
   text-align: center;
   margin: 0 0 20px;
   cursor: pointer;
+}
 
+.auth-form__submit-button:hover {
+  opacity: 80%;
+}
+
+@media screen and (max-width: 690px) {
+  .auth-form__submit-button {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }

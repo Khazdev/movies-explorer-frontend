@@ -6,3 +6,16 @@
   margin-top: 125px;
   align-items: stretch;
 }
+
+@media screen and (max-width: 990px) {
+  .profile__form {
+    margin-top: 96px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .profile__form {
+    gap: 170px;
+    margin-top: 80px;
+  }
+}

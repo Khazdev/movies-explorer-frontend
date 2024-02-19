@@ -1,0 +1,11 @@
+.auth-form__buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media screen and (max-width: 690px) {
+  .auth-form__buttons-container {
+    gap: 14px;
+  }
+}

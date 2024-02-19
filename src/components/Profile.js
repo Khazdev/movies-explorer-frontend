@@ -21,20 +21,22 @@ export function Profile() {
               <input className='profile__input' type="" placeholder="E-mail" value='asd@asd.ru'/>
             </li>
           </ul>
-          <button
-            type="submit"
-            className="profile__button profile__button_edit"
-            // disabled
-          >
-            Редактировать
-          </button>
-          <button
-            type="button"
-            className="profile__button profile__button_sign-out"
-            // disabled
-          >
-            Выйти из аккаунта
-          </button>
+          <div className='profile__buttons-container'>
+            <button
+              type="submit"
+              className="profile__button profile__button_edit"
+              // disabled
+            >
+              Редактировать
+            </button>
+            <button
+              type="button"
+              className="profile__button profile__button_sign-out"
+              // disabled
+            >
+              Выйти из аккаунта
+            </button>
+          </div>
         </form>
       </section>
     </>

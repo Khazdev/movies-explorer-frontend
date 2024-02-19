@@ -10,6 +10,10 @@
   justify-content: space-between;
 }
 
+.portfolio__link:hover {
+  opacity: 70%;
+}
+
 .portfolio__link::after {
   content: '';
   display: block;
@@ -21,6 +25,12 @@
   line-height: 60px;
   letter-spacing: -0.04em;
   margin: auto 0;
+}
+
+@media screen and (max-width: 990px) {
+  .portfolio__link {
+    font-size: 28px;
+  }
 }
 
 @media screen and (max-width: 690px) {

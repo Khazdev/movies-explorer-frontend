@@ -6,3 +6,12 @@
   border: none;
   background-color: transparent;
 }
+
+
+@media screen and (max-width: 690px) {
+  .profile__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+

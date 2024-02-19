@@ -3,3 +3,7 @@
   align-self: center;
   color: #fff;
 }
+
+.header__link:hover {
+  opacity: 80%;
+}

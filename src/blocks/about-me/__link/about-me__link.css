@@ -7,9 +7,17 @@
   line-height: 17px;
   letter-spacing: 0;
   text-align: left;
+  display: flex;
 }
+
 @media screen and (max-width: 990px) {
   .about-me__link {
-    margin-top: 40px;
+    margin-top: 87px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .about-me__link {
+    margin-top: 44px;
   }
 }

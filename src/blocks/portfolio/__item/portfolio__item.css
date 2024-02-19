@@ -11,3 +11,8 @@
   margin-top: 20px;
 }
 
+@media screen and (max-width: 990px) {
+  .portfolio__item:not(:last-child)::after {
+    border-bottom: 1px solid #E6E6E6;
+  }
+}

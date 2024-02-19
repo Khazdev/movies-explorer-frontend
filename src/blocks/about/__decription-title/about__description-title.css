@@ -12,5 +12,6 @@
   .about__description-title {
     font-size: 18px;
     line-height: 22px;
+    max-height: 48px;
   }
 }

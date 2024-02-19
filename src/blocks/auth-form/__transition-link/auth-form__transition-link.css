@@ -13,3 +13,14 @@
   cursor: pointer;
   font-weight: 400;
 }
+
+.auth-form__transition-link:hover {
+  opacity: 70%;
+}
+
+@media screen and (max-width: 690px) {
+  .auth-form__transition-link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

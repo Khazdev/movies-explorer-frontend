@@ -16,6 +16,6 @@
 @media screen and (max-width: 690px) {
   .movies__grid {
     grid-template-columns: 1fr;
-    row-gap: 47px;
+    row-gap: 35px;
   }
 }

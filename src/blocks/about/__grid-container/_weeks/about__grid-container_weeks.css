@@ -4,11 +4,22 @@
   grid-template-rows: 36px 36px;
   justify-content: center;
   text-align: center;
+  row-gap: 14px;
+  margin-bottom: 93px;
+}
+
+@media screen and (max-width: 990px) {
+  .about__grid-container_weeks {
+    row-gap: 14px;
+    grid-template-columns: 140px 1fr;
+    margin-bottom: 71px;
+  }
 }
 
 @media screen and (max-width: 690px) {
   .about__grid-container_weeks {
     grid-template-columns: 35% 65%;
     margin-bottom: 58px;
+    row-gap: 10px;
   }
 }
