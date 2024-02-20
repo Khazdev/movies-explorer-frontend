@@ -19,6 +19,7 @@ function AboutMe() {
           <Link className="about-me__link"
                 to="https://github.com/Khazdev"
                 target="_blank"
+                rel="noopener noreferrer"
           >Github
           </Link>
         </div>

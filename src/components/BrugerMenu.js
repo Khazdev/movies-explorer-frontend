@@ -36,7 +36,7 @@ const BurgerMenu = ({isMobileMenuOpen, handleCloseMobileMenu, handleOpenMobileMe
         <button className="burger-menu__close-button"
                 onClick={handleCloseMobileMenu}
         >
-          <img className="burger-menu__close-icon" src={closeButton} alt=""/>
+          <img className="burger-menu__close-icon" src={closeButton} alt="кнопка меню"/>
         </button>
         <Navigation
           isMobile={true}
