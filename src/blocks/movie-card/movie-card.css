@@ -5,6 +5,7 @@
   cursor: pointer;
   max-height: 231px;
   max-width: 360px;
+  justify-content: space-between;
 }
 .movie-card:hover .movie-card__del-button {
   visibility: visible;

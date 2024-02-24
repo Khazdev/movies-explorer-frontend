@@ -14,6 +14,7 @@ function App() {
   const localLoggedIn = !!localStorage.getItem('loggedIn')
   const [isLoggedIn, setIsLoggedIn] = useState(localLoggedIn);
   const [currentUser, setCurrentUser] = useState({});
+  const [myMovies, setMyMovies] = useState([]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -21,7 +22,7 @@ function App() {
         .getCurrentUser()
         .then((response) => {
           setCurrentUser(response);
-          console.log(response)
+          getSavedMovies()
         })
         .catch((error) => console.log(error));
     }
@@ -95,6 +96,35 @@ function App() {
       });
   };
 
+  const handleSaveMovie = (movieData) => {
+    api.createMovie(movieData)
+      .then(async () => {
+        await getSavedMovies();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDeleteMovie = (movieId) => {
+    api.deleteMovie(movieId)
+      .then(async () => {
+        await getSavedMovies();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getSavedMovies = async () => {
+    await api.getMovies()
+      .then((movies) => {
+        setMyMovies(movies);
+      }).catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <Routes>
       <Route exact path="/" element={<Main isLoggedIn={isLoggedIn}/>}/>
@@ -105,8 +135,9 @@ function App() {
         currentUser={currentUser}
         onUpdateUser={handleUpdateUser}
       />}/>
-      <Route path="/movies" element={<Movies isLoggedIn={isLoggedIn}/>}/>
-      <Route path="/saved-movies" element={<SavedMovies/>}/>
+      <Route path="/movies" element={<Movies isLoggedIn={isLoggedIn} onSaveMovie={handleSaveMovie}
+                                             onDeleteMovie={handleDeleteMovie} savedMovies={myMovies}/>}/>
+      <Route path="/saved-movies" element={<SavedMovies onDeleteMovie={handleDeleteMovie} savedMovies={myMovies}/>}/>
       <Route path="*" element={<NotFound/>}/>
     </Routes>
   );

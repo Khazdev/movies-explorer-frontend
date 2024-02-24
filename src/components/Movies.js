@@ -5,16 +5,16 @@ import Header from "./Header";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import { moviesApi } from "../utils/MoviesApi";
+import { filterMoviesBySearchText } from "../utils/moviesUtils";
 
-export function Movies({isLoggedIn}) {
+export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
   const [displayedCards, setDisplayedCards] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [allMovies, setAllMovies] = useState([]);
   const [shortMoviesFlag, setShortMoviesFlag] = useState(JSON.parse(localStorage.getItem("shortFilmToggle")));
   const [filteredMovies, setFilteredMovies] = useState(null);
-  const russianRegex = /[а-яА-ЯЁё]/;
-  const englishRegex = /[a-zA-Z]/;
+
 
   const handleSetShortMoviesFlag = (isActive) => {
     localStorage.setItem("shortFilmToggle", JSON.stringify(isActive))
@@ -53,29 +53,6 @@ export function Movies({isLoggedIn}) {
   const handleLoadMore = (additionalLoadCount) => {
     setDisplayedCards(displayedCards + additionalLoadCount);
   };
-
-  function filterMoviesBySearchText(searchText, movies) {
-
-    return movies.filter((movie) => {
-      const lowerCaseSearchText = searchText.toLowerCase();
-      if (russianRegex.test(searchText)) {
-        return (
-          movie.nameRU.toLowerCase().includes(lowerCaseSearchText)
-        );
-      } else if (englishRegex.test(searchText)) {
-        return (
-          movie.nameEN.toLowerCase().includes(lowerCaseSearchText)
-        );
-      } else if (!isNaN(searchText)) {
-        return (
-          movie.nameRU.toLowerCase().includes(lowerCaseSearchText) ||
-          movie.nameEN.toLowerCase().includes(lowerCaseSearchText)
-        );
-      } else {
-        return false;
-      }
-    });
-  }
 
   async function searchMovies(searchText) {
     await moviesApi.searchMovies()
@@ -129,6 +106,9 @@ export function Movies({isLoggedIn}) {
           displayedCards={displayedCards}
           handleLoadMore={handleLoadMore}
           isShortMoviesActive={shortMoviesFlag}
+          onSaveMovie={onSaveMovie}
+          onDeleteMovie={onDeleteMovie}
+          savedMovies={savedMovies}
           error={error}
         />
       }

@@ -5,6 +5,11 @@
   letter-spacing: 0;
   text-align: left;
   color: #fff;
+  align-self: baseline;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 250px;
 }
 
 @media screen and (max-width: 690px) {
