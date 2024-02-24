@@ -1,10 +1,11 @@
 import AuthForm from "./AuthForm";
 
-export function Login() {
+export function Login({onLogin}) {
 
   return (
     <AuthForm
       isRegister={false}
+      onSubmit={onLogin}
     />
   );
 }

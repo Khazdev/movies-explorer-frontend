@@ -4,24 +4,26 @@ import Preloader from "./Preloader";
 import Header from "./Header";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
+import { moviesApi } from "../utils/MoviesApi";
 
-export function Movies() {
+export function Movies({isLoggedIn}) {
   const [displayedCards, setDisplayedCards] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [allMovies, setAllMovies] = useState([]);
-  const [shortMoviesFlag, setShortMoviesFlag] = useState(!!localStorage.getItem("shortFilmToggle"));
+  const [shortMoviesFlag, setShortMoviesFlag] = useState(JSON.parse(localStorage.getItem("shortFilmToggle")));
   const [filteredMovies, setFilteredMovies] = useState(null);
   const russianRegex = /[а-яА-ЯЁё]/;
   const englishRegex = /[a-zA-Z]/;
 
   const handleSetShortMoviesFlag = (isActive) => {
+    localStorage.setItem("shortFilmToggle", JSON.stringify(isActive))
     setShortMoviesFlag(isActive)
   };
 
   function generateDisplayCardsCount() {
     const screenWidth = window.innerWidth;
-    if (screenWidth >= 1280) {
+    if (screenWidth >= 990) {
       setDisplayedCards(12);
     } else if (screenWidth >= 768) {
       setDisplayedCards(8);
@@ -57,12 +59,10 @@ export function Movies() {
     return movies.filter((movie) => {
       const lowerCaseSearchText = searchText.toLowerCase();
       if (russianRegex.test(searchText)) {
-        console.log("isRussianRegexp")
         return (
           movie.nameRU.toLowerCase().includes(lowerCaseSearchText)
         );
       } else if (englishRegex.test(searchText)) {
-        console.log("isEnglishRegex")
         return (
           movie.nameEN.toLowerCase().includes(lowerCaseSearchText)
         );
@@ -78,13 +78,7 @@ export function Movies() {
   }
 
   async function searchMovies(searchText) {
-    await fetch(`https://api.nomoreparties.co/beatfilm-movies`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Request failed with status code " + response.status);
-        }
-        return response.json();
-      })
+    await moviesApi.searchMovies()
       .then((data) => {
         localStorage.setItem("movies", JSON.stringify(data));
         setAllMovies(data);
@@ -117,7 +111,7 @@ export function Movies() {
   return (
     <>
       <Header
-        isSignedIn={true}
+        isSignedIn={isLoggedIn}
       ></Header>
       <SearchForm
         onSearch={handleSearch}
@@ -127,6 +121,7 @@ export function Movies() {
         loading={loading}
       >
       </Preloader>
+
       {!loading && filteredMovies &&
         <MoviesCardList
           movies={filteredMovies}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 export function SearchForm({onSearch, onFilterShortMovies}) {
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
-  const [isToggleChecked, setIsToggleChecked] = useState(false);
+  const [isToggleChecked, setIsToggleChecked] = useState(JSON.parse(localStorage.getItem("shortFilmToggle")));
 
   useEffect(() => {
     const searchQuery = localStorage.getItem("searchQuery");
@@ -13,14 +13,11 @@ export function SearchForm({onSearch, onFilterShortMovies}) {
   }, []);
 
   useEffect(() => {
-    const shortFilmToggle = localStorage.getItem("shortFilmToggle");
-    if (shortFilmToggle) {
-      setIsToggleChecked(JSON.parse(shortFilmToggle));
-    }
+    const shortFilmToggle = JSON.parse(localStorage.getItem("shortFilmToggle"));
+    setIsToggleChecked(shortFilmToggle);
   }, []);
 
   const handleIsToggleChecked = (checked) => {
-    localStorage.setItem("shortFilmToggle", JSON.stringify(checked));
     setIsToggleChecked(checked);
     onFilterShortMovies(checked)
   };

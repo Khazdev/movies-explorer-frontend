@@ -3,10 +3,18 @@
   height: 38px;
   object-fit: fill;
   align-self: flex-start;
+  margin-top: 70px;
+}
+
+@media screen and (max-width: 990px) {
+  .auth-form__logo {
+    margin-top: 232px;
+  }
 }
 
 @media screen and (max-width: 690px) {
   .auth-form__logo {
     align-self: center;
+    margin-top: 56px;
   }
 }
