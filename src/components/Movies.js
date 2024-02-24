@@ -92,7 +92,6 @@ export function Movies() {
         setFilteredMovies(filteredMovies);
         setLoading(false);
         localStorage.setItem("searchQuery", searchText);
-        // localStorage.setItem("shortFilmToggle", JSON.stringify(shortFilmToggle));
         localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
         return filteredMovies;
       })
@@ -125,9 +124,7 @@ export function Movies() {
         onFilterShortMovies={handleSetShortMoviesFlag}
       />
       <Preloader
-        data={filteredMovies}
         loading={loading}
-        error={error}
       >
       </Preloader>
       {!loading && filteredMovies &&
@@ -137,6 +134,7 @@ export function Movies() {
           displayedCards={displayedCards}
           handleLoadMore={handleLoadMore}
           isShortMoviesActive={shortMoviesFlag}
+          error={error}
         />
       }
       <Footer></Footer>
