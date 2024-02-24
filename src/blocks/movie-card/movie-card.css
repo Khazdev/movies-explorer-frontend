@@ -3,10 +3,24 @@
   flex-direction: column;
   position: relative;
   cursor: pointer;
+  max-height: 231px;
+  max-width: 360px;
 }
 .movie-card:hover .movie-card__del-button {
   visibility: visible;
 }
 .movie-card:hover .movie-card__save-button_state_not-saved {
   visibility: visible;
+}
+@media screen and (max-width: 990px) {
+  .movie-card {
+    max-width: 339px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .movie-card {
+    max-height: 199px;
+    max-width: 300px;
+  }
 }

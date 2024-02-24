@@ -1,8 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export function SearchForm({onSearch}) {
+export function SearchForm({onSearch, onFilterShortMovies}) {
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
+  const [isToggleChecked, setIsToggleChecked] = useState(false);
+
+  useEffect(() => {
+    const searchQuery = localStorage.getItem("searchQuery");
+    if (searchQuery) {
+      setSearchText(searchQuery);
+    }
+  }, []);
+
+  useEffect(() => {
+    const shortFilmToggle = localStorage.getItem("shortFilmToggle");
+    if (shortFilmToggle) {
+      setIsToggleChecked(JSON.parse(shortFilmToggle));
+    }
+  }, []);
+
+  const handleIsToggleChecked = (checked) => {
+    localStorage.setItem("shortFilmToggle", JSON.stringify(checked));
+    setIsToggleChecked(checked);
+    onFilterShortMovies(checked)
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -11,7 +32,6 @@ export function SearchForm({onSearch}) {
       setError('Нужно ввести ключевое слово');
     } else {
       setError('');
-      console.log("sadasd")
       onSearch(searchText);
     }
   };
@@ -36,7 +56,11 @@ export function SearchForm({onSearch}) {
               </span>
         </div>
         <label className="search__toggle">
-          <input className="search__toggle-checkbox" type="checkbox"/>
+          <input className="search__toggle-checkbox"
+                 type="checkbox"
+                 checked={isToggleChecked}
+                 onChange={(event) => handleIsToggleChecked(event.target.checked)}
+          />
           <div className="search__toggle-switch"></div>
           <span className="search__toggle-label">Короткометражки</span>
         </label>

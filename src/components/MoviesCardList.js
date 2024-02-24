@@ -7,12 +7,24 @@ function convertMinutesToString(minutes) {
   return `${hours}ч ${remainingMinutes}м`;
 }
 
-export function MoviesCardList({movies, allMoviesFlag, displayedCards, handleLoadMore}) {
+export function MoviesCardList({movies, allMoviesFlag, displayedCards, handleLoadMore, isShortMoviesActive}) {
+
+  const [moviesToRender, setMoviesToRender] = useState([]);
+
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   const handleResize = () => {
-    console.log(windowWidth)
     setWindowWidth(window.innerWidth)
   }
+
+  useEffect(() => {
+    if (isShortMoviesActive) {
+      setMoviesToRender(movies.filter((movie) => movie.duration < 40))
+    } else {
+      setMoviesToRender(movies)
+    }
+  }, [isShortMoviesActive]);
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
 
@@ -20,10 +32,11 @@ export function MoviesCardList({movies, allMoviesFlag, displayedCards, handleLoa
       window.removeEventListener("resize", handleResize);
     };
   }, [handleResize]);
+
   return (
     <section className="movies">
       <ul className="movies__grid">
-        {movies
+        {moviesToRender
           .slice(0, displayedCards)
           .map((movie) => (
             <MoviesCard
@@ -37,17 +50,17 @@ export function MoviesCardList({movies, allMoviesFlag, displayedCards, handleLoa
           ))}
       </ul>
 
-      {windowWidth >= 1280 && displayedCards < movies.length && (
-        <button className="movies__more-button" onClick={() => handleLoadMore(3-displayedCards%3)}>
+      {windowWidth >= 1280 && displayedCards < moviesToRender.length && (
+        <button className="movies__more-button" onClick={() => handleLoadMore(3 - displayedCards % 3)}>
           Ещё
         </button>
       )}
-      {windowWidth >= 768 && windowWidth < 1280 && (
-        <button className="movies__more-button" onClick={() => handleLoadMore(2)}>
+      {windowWidth >= 768 && windowWidth < 1280 && displayedCards < moviesToRender.length && (
+        <button className="movies__more-button" onClick={() => handleLoadMore(2 - displayedCards % 2)}>
           Ещё
         </button>
       )}
-      {windowWidth >= 320 && windowWidth < 768 && displayedCards < movies.length && (
+      {windowWidth >= 320 && windowWidth < 768 && displayedCards < moviesToRender.length && (
         <button className="movies__more-button" onClick={() => handleLoadMore(2)}>
           Ещё
         </button>
