@@ -2,7 +2,7 @@ import logo from "../images/logo.svg";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useFormWithValidation } from "./ValidationHook";
-import { EMAIL_REGEX } from "../constants/movies";
+import { EMAIL_REGEX } from "../constants/constants";
 
 export function AuthForm({
                            isRegister,

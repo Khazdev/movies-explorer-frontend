@@ -78,16 +78,6 @@ class Api {
     });
   }
 
-  validToken(jwt) {
-    return this._request(`/users/me`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${jwt}`,
-      },
-    });
-  }
-
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
@@ -100,7 +90,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.khazanov.diplom.nomoredomainsmonster.ru",
   headers: {
     "Content-Type": "application/json",
   },
