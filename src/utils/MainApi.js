@@ -91,8 +91,11 @@ class Api {
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
+    } else {
+      return res.json().then((data) => {
+        return Promise.reject({ status: res.status, message: data.message });
+      });
     }
-    return Promise.reject(`Error: ${res.status}`);
   }
 }
 

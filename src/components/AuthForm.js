@@ -91,7 +91,7 @@ export function AuthForm({
         <div className="auth-form__buttons-container">
           {error &&
           <span className={`auth-form__input_error auth-form__input_error_visible`}>
-                Что-то пошло не так
+                {error}
               </span> }
           <button
             type="submit"

@@ -35,7 +35,7 @@ function App() {
     handleValidateToken();
   }, []);
 
-  const handleSignUp = async (data) => {
+  const handleSignUp = async (data, setError) => {
     await api.signUp(data.name, data.email, data.password)
       .then(() => {
         setTimeout(() => {
@@ -43,6 +43,7 @@ function App() {
         }, 2000)
       })
       .catch((error) => {
+        setError(error.message)
         console.log(error);
       })
   }
@@ -57,7 +58,8 @@ function App() {
         navigate('/movies')
       })
       .catch((error) => {
-        setError(error)
+        setError(error.message)
+        console.log(error);
       })
   }
 
