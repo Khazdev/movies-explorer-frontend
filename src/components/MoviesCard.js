@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 
 function MoviesCard({movie, allMoviesFlag, onSaveMovie, onDeleteMovie, movieId, isLiked}) {
   const {nameRU, duration, image} = movie;
@@ -57,14 +58,18 @@ function MoviesCard({movie, allMoviesFlag, onSaveMovie, onDeleteMovie, movieId, 
     }
   };
 
-
   return (
     <li className="movie-card">
+      <Link to={movie.trailerLink}
+            target="_blank"
+            rel="noopener noreferrer"
+      >
       <img className="movie-card__photo" src={imageUrl} alt="превью изображение фильма"/>
       <div className="movie-card__info-container">
         <span className="movie-card__description">{nameRU}</span>
         <span className="movie-card__duration">{convertMinutesToString(duration)}</span>
       </div>
+      </Link>
       {allMoviesFlag ? (
         <button
           className={`movie-card__save-button movie-card__save-button_state_${
@@ -78,6 +83,7 @@ function MoviesCard({movie, allMoviesFlag, onSaveMovie, onDeleteMovie, movieId, 
       ):(
         <button className="movie-card__del-button" aria-label="Удалить фильм" onClick={deleteMovie}></button>
       )}
+
     </li>
   );
 }

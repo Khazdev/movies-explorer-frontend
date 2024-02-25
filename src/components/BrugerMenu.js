@@ -1,31 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Navigation from "./Navigation";
 import closeButton from "../images/xbutton.svg"
 
-const BurgerMenu = ({isMobileMenuOpen, handleCloseMobileMenu, handleOpenMobileMenu}) => {
-  const [isClosing, setIsClosing] = useState(false);
-
-  // const location = useLocation();
-  // const isHomePage = location.pathname==='/';
-
-  const handleOpenMenu = () => {
-    handleOpenMobileMenu();
-  };
+const BurgerMenu = ({isMobileMenuOpen, handleCloseMobileMenu}) => {
 
   const handleCloseMenu = () => {
-    setIsClosing(true);
     handleCloseMobileMenu();
   };
-
-  const onAnimationEnd = () => {
-    setIsClosing(false);
-  };
-
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      setIsClosing(false);
-    }
-  }, [isMobileMenuOpen]);
 
   return (
     <>

@@ -56,7 +56,6 @@ function Header({isSignedIn}) {
             {isMobileMenuOpen && <BurgerMenu
               isMobileMenuOpen={isMobileMenuOpen}
               handleCloseMobileMenu={handleCloseMobileMenu}
-              handleOpenMobileMenu={handleOpenMobileMenu}
             ></BurgerMenu>}
           </>
         ):(
