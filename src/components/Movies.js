@@ -91,7 +91,7 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
       localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
     } else {
       setLoading(true);
-      searchMovies(searchText).then(r => console.log(r));
+      searchMovies(searchText);
     }
   };
   return (

@@ -72,14 +72,12 @@ function Header({isSignedIn}) {
           <Link
             className="header__link header__link_type_registration"
             to="/signup"
-            onClick={console.log()}
           >
             Регистрация
           </Link>
           <Link
             className="header__link header__link_type_login"
             to="/signin"
-            onClick={console.log()}
           >
             Войти
           </Link>

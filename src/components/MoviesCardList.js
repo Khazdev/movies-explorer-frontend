@@ -1,5 +1,5 @@
 import MoviesCard from "./MoviesCard";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 export function MoviesCardList({
                                  movies,
@@ -17,26 +17,17 @@ export function MoviesCardList({
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth)
-  }
+  const handleResize = useCallback(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
 
   useEffect(() => {
-    if (allMoviesFlag) {
-      if (isShortMoviesActive) {
-        setMoviesToRender(movies.filter((movie) => movie.duration < 40))
-      } else {
-        setMoviesToRender(movies)
-      }
-    } else if (savedMovies) {
-      if (isShortMoviesActive) {
-        setMoviesToRender(savedMovies.filter((movie) => movie.duration < 40))
-      } else {
-        setMoviesToRender(savedMovies)
-      }
+    if (isShortMoviesActive) {
+      setMoviesToRender(movies.filter((movie) => movie.duration < 40))
+    } else {
+      setMoviesToRender(movies)
     }
-
-  }, [allMoviesFlag, isShortMoviesActive, movies, savedMovies]);
+  }, [isShortMoviesActive, movies]);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);

@@ -115,6 +115,7 @@
 @import url(blocks/profile/__button/profile__button.css);
 @import url(blocks/profile/__buttons-container/profile__buttons-container.css);
 @import url(blocks/profile/__button/_edit/profile__button_edit.css);
+@import url(blocks/profile/__button/_edit/_disabled/profile__button_edit_disabled.css);
 @import url(blocks/profile/__button/_sign-out/profile__button_sign-out.css);
 
 @import url(blocks/auth-form/auth-form.css);

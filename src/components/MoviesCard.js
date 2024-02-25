@@ -50,8 +50,6 @@ function MoviesCard({movie, allMoviesFlag, onSaveMovie, onDeleteMovie, movieId, 
   }
 
   const handleSaveMovie = () => {
-    console.log("isSaved")
-    console.log(isSaved)
     if (isSaved) {
       deleteMovie()
     } else {

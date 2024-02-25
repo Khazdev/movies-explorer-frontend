@@ -46,8 +46,9 @@ function App() {
       })
   }
 
-  const handleSignIn = async (email, password) => {
-    await api.signIn(email, password)
+  const handleSignIn = async (data) => {
+    console.log(data)
+    await api.signIn(data.email, data.password)
       .then((res) => {
         const jwt = res.token;
         localStorage.setItem('jwt', jwt)
@@ -132,14 +133,15 @@ function App() {
         <Route exact path="/" element={<Main isLoggedIn={isLoggedIn}/>}/>
         <Route path="/signup" element={<Register onRegister={handleSignUp}/>}/>
         <Route path="/signin" element={<Login onLogin={handleSignIn}/>}/>
-        <Route path="/profile" element={<Profile
-          onSignOut={handleSignOut}
-          currentUser={currentUser}
-          onUpdateUser={handleUpdateUser}
-        />}/>
-        <Route path="/movies" element={<Movies isLoggedIn={isLoggedIn} onSaveMovie={handleSaveMovie}
-                                               onDeleteMovie={handleDeleteMovie} savedMovies={myMovies}/>}/>
-        <Route path="/saved-movies" element={<SavedMovies onDeleteMovie={handleDeleteMovie} savedMovies={myMovies}/>}/>
+        <Route path="/profile" element={<Profile onSignOut={handleSignOut}
+                                                 currentUser={currentUser}
+                                                 onUpdateUser={handleUpdateUser}/>}/>
+        <Route path="/movies" element={<Movies isLoggedIn={isLoggedIn}
+                                               onSaveMovie={handleSaveMovie}
+                                               onDeleteMovie={handleDeleteMovie}
+                                               savedMovies={myMovies}/>}/>
+        <Route path="/saved-movies" element={<SavedMovies onDeleteMovie={handleDeleteMovie}
+                                                          savedMovies={myMovies}/>}/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </CurrentUserContext.Provider>
