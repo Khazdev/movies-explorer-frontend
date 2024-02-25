@@ -1,6 +1,6 @@
 import logo from "../images/logo.svg";
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { useFormWithValidation } from "./ValidationHook";
 import { EMAIL_REGEX } from "../constants/movies";
 
@@ -9,13 +9,18 @@ export function AuthForm({
                            onSubmit
                          }) {
   const {values, handleChange, errors, isValid} = useFormWithValidation();
-
+  const [error, setError] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
+    setError('');
     isRegister
-      ? onSubmit({name: values.name, email: values.email, password: values.password})
-      :onSubmit({email: values.email, password: values.password});
+      ? onSubmit({
+        name: values.name,
+        email: values.email,
+        password: values.password
+      }, setError)
+      :onSubmit({email: values.email, password: values.password}, setError)
   }
 
   return (
@@ -63,7 +68,8 @@ export function AuthForm({
               required
             />
             <span
-              className={`auth-form__input_error ${errors.email && 'auth-form__input_error_visible'}`}>                {errors.email}
+              className={`auth-form__input_error ${errors.email && 'auth-form__input_error_visible'}`}>
+              {errors.email}
               </span>
           </li>
           <li className="auth-form__field">
@@ -83,6 +89,10 @@ export function AuthForm({
           </li>
         </ul>
         <div className="auth-form__buttons-container">
+          {error &&
+          <span className={`auth-form__input_error auth-form__input_error_visible`}>
+                Что-то пошло не так
+              </span> }
           <button
             type="submit"
             className={`auth-form__submit-button ${!isValid && 'auth-form__submit-button_disabled'}`}  //auth-form__submit-button_disabled"

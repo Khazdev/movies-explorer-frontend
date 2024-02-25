@@ -47,8 +47,7 @@ function App() {
       })
   }
 
-  const handleSignIn = async (data) => {
-    console.log(data)
+  const handleSignIn = async (data, setError) => {
     await api.signIn(data.email, data.password)
       .then((res) => {
         const jwt = res.token;
@@ -58,7 +57,7 @@ function App() {
         navigate('/movies')
       })
       .catch((error) => {
-        console.log(error);
+        setError(error)
       })
   }
 
@@ -139,7 +138,6 @@ function App() {
         <Route path="/profile" element={<ProtectedRoute element={Profile}
                                                         isLoggedIn={isLoggedIn}
                                                         onSignOut={handleSignOut}
-                                                        currentUser={currentUser}
                                                         onUpdateUser={handleUpdateUser}/>}>
         </Route>
         <Route path="/movies" element={<ProtectedRoute element={Movies}

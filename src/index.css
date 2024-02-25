@@ -43,6 +43,7 @@
 @import url(blocks/movies/__message/_error/movies__message_error.css);
 
 @import url(blocks/movie-card/movie-card.css);
+@import url(blocks/movie-card/__link/movie-card__link.css);
 @import url(blocks/movie-card/__photo/movie-card__photo.css);
 @import url(blocks/movie-card/__info-container/movie-card__info-container.css);
 @import url(blocks/movie-card/__description/movie-card__description.css);
@@ -110,6 +111,8 @@
 @import url(blocks/profile/__form/profile__form.css);
 @import url(blocks/profile/__fields/profile__fields.css);
 @import url(blocks/profile/__field/profile__field.css);
+@import url(blocks/profile/__input-container/profile__input-container.css);
+@import url(blocks/profile/__input-error/profile__input-error.css);
 @import url(blocks/profile/__input/profile__input.css);
 @import url(blocks/profile/__label/profile__label.css);
 @import url(blocks/profile/__button/profile__button.css);

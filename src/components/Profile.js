@@ -41,26 +41,32 @@ export function Profile({onSignOut, onUpdateUser}) {
         <form className='profile__form' onSubmit={handleSubmit}>
           <ul className='profile__fields'>
             <li className="profile__field">
-              <label className="profile__label">Имя</label>
-              <input className="profile__input"
-                     type="text"
-                     name='name'
-                     minLength='2'
-                     maxLength='40'
-                     placeholder="Имя"
-                     value={values.name || ""}
-                     onChange={handleChange}
-                     required
-              />
+              <span className='profile__input-error'>{errors.name}</span>
+              <div className='profile__input-container'>
+                <label className="profile__label">Имя</label>
+                <input className="profile__input"
+                       type="text"
+                       name='name'
+                       minLength='2'
+                       maxLength='40'
+                       placeholder="Имя"
+                       value={values.name || ""}
+                       onChange={handleChange}
+                       required
+                /></div>
             </li>
             <li className="profile__field">
-              <label className='profile__label'>E-mail</label>
-              <input className='profile__input'
-                     type="email"
-                     name='email'
-                     placeholder="E-mail"
-                     value={values.email || ''}
-                     onChange={handleChange}/>
+              <div className='profile__input-container'>
+                <label className='profile__label'>E-mail</label>
+                <input className='profile__input'
+                       type="email"
+                       name='email'
+                       placeholder="E-mail"
+                       value={values.email || ''}
+                       required
+                       onChange={handleChange}/>
+              </div>
+              <span className='profile__input-error'>{errors.email}</span>
             </li>
           </ul>
           <div className='profile__buttons-container'>
@@ -81,7 +87,8 @@ export function Profile({onSignOut, onUpdateUser}) {
         </form>
       </section>
     </>
-  );
+  )
+    ;
 }
 
 export default Profile

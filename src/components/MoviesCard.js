@@ -60,7 +60,8 @@ function MoviesCard({movie, allMoviesFlag, onSaveMovie, onDeleteMovie, movieId, 
 
   return (
     <li className="movie-card">
-      <Link to={movie.trailerLink}
+      <Link className="movie-card__link"
+        to={movie.trailerLink}
             target="_blank"
             rel="noopener noreferrer"
       >
