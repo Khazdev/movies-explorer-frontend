@@ -28,9 +28,15 @@ export function MoviesCardList({
       } else {
         setMoviesToRender(movies)
       }
+    } else if (savedMovies) {
+      if (isShortMoviesActive) {
+        setMoviesToRender(savedMovies.filter((movie) => movie.duration < 40))
+      } else {
+        setMoviesToRender(savedMovies)
+      }
     }
 
-  }, [isShortMoviesActive, movies]);
+  }, [allMoviesFlag, isShortMoviesActive, movies, savedMovies]);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -54,10 +60,9 @@ export function MoviesCardList({
             <div className="movies__message">Ничего не найдено</div>
           ):(
             <>
-              {console.log(savedMovies)}
               {!allMoviesFlag ? (
                 <ul className="movies__grid">
-                  {savedMovies.map((movie) => (
+                  {moviesToRender.map((movie) => (
                     <MoviesCard
                       key={movie._id}
                       movie={movie}

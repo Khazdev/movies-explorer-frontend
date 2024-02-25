@@ -14,6 +14,7 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
   const [allMovies, setAllMovies] = useState([]);
   const [shortMoviesFlag, setShortMoviesFlag] = useState(JSON.parse(localStorage.getItem("shortFilmToggle")));
   const [filteredMovies, setFilteredMovies] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
 
   const handleSetShortMoviesFlag = (isActive) => {
@@ -31,6 +32,13 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
       setDisplayedCards(5);
     }
   }
+
+  useEffect(() => {
+    const searchText = localStorage.getItem("searchQuery");
+    if (searchText) {
+      setSearchQuery(searchText);
+    }
+  }, []);
 
   useEffect(() => {
     const filteredMovies = localStorage.getItem("filteredMovies");
@@ -62,6 +70,7 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
         const filteredMovies = filterMoviesBySearchText(searchText, data);
         setFilteredMovies(filteredMovies);
         setLoading(false);
+        setSearchQuery(searchText);
         localStorage.setItem("searchQuery", searchText);
         localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
         return filteredMovies;
@@ -93,6 +102,8 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
       <SearchForm
         onSearch={handleSearch}
         onFilterShortMovies={handleSetShortMoviesFlag}
+        searchQuery={searchQuery}
+        isFilterShortMovies={shortMoviesFlag}
       />
       <Preloader
         loading={loading}

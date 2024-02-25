@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
-export function SearchForm({onSearch, onFilterShortMovies}) {
-  const [searchText, setSearchText] = useState('');
+export function SearchForm({onSearch, onFilterShortMovies, searchQuery, isFilterShortMovies}) {
+  const [searchText, setSearchText] = useState(searchQuery);
   const [error, setError] = useState('');
-  const [isToggleChecked, setIsToggleChecked] = useState(JSON.parse(localStorage.getItem("shortFilmToggle")));
+  const [isToggleChecked, setIsToggleChecked] = useState(isFilterShortMovies);
 
   useEffect(() => {
-    const searchQuery = localStorage.getItem("searchQuery");
+    setIsToggleChecked(isFilterShortMovies)
+  }, [isFilterShortMovies]);
+
+  useEffect(() => {
     if (searchQuery) {
       setSearchText(searchQuery);
     }
-  }, []);
-
-  useEffect(() => {
-    const shortFilmToggle = JSON.parse(localStorage.getItem("shortFilmToggle"));
-    setIsToggleChecked(shortFilmToggle);
-  }, []);
+  }, [searchQuery]);
 
   const handleIsToggleChecked = (checked) => {
     setIsToggleChecked(checked);
