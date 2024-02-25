@@ -2,9 +2,7 @@ import logo from "../images/logo.svg";
 import { Link } from "react-router-dom";
 import React from "react";
 import { useFormWithValidation } from "./ValidationHook";
-
-const EMAIL_REGEX =
-  "^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$";
+import { EMAIL_REGEX } from "../constants/movies";
 
 export function AuthForm({
                            isRegister,
@@ -47,7 +45,7 @@ export function AuthForm({
               />
               <span
                 className={`auth-form__input_error ${errors.name && 'auth-form__input_error_visible'}`}
-                >
+              >
                 {errors.name}
               </span>
             </li>
@@ -76,7 +74,7 @@ export function AuthForm({
               name='password'
               placeholder="Введите пароль"
               onChange={handleChange}
-              value={values.password  || ""}
+              value={values.password || ""}
               required
             />
             <span className={`auth-form__input_error ${errors.password && 'auth-form__input_error_visible'}`}>

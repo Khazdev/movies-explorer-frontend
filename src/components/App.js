@@ -9,6 +9,7 @@ import { Route, Routes, useNavigate } from "react-router";
 import { api } from "../utils/MainApi";
 import { useEffect, useState } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ function App() {
         localStorage.setItem('jwt', jwt)
         setIsLoggedIn(true)
         localStorage.setItem('loggedIn', "true")
-        navigate('/')
+        navigate('/movies')
       })
       .catch((error) => {
         console.log(error);
@@ -130,18 +131,28 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
-        <Route exact path="/" element={<Main isLoggedIn={isLoggedIn}/>}/>
+        <Route exact path="/" element={<ProtectedRoute element={Main}
+                                                       isLoggedIn={isLoggedIn}/>}>
+        </Route>
         <Route path="/signup" element={<Register onRegister={handleSignUp}/>}/>
         <Route path="/signin" element={<Login onLogin={handleSignIn}/>}/>
-        <Route path="/profile" element={<Profile onSignOut={handleSignOut}
-                                                 currentUser={currentUser}
-                                                 onUpdateUser={handleUpdateUser}/>}/>
-        <Route path="/movies" element={<Movies isLoggedIn={isLoggedIn}
-                                               onSaveMovie={handleSaveMovie}
-                                               onDeleteMovie={handleDeleteMovie}
-                                               savedMovies={myMovies}/>}/>
-        <Route path="/saved-movies" element={<SavedMovies onDeleteMovie={handleDeleteMovie}
-                                                          savedMovies={myMovies}/>}/>
+        <Route path="/profile" element={<ProtectedRoute element={Profile}
+                                                        isLoggedIn={isLoggedIn}
+                                                        onSignOut={handleSignOut}
+                                                        currentUser={currentUser}
+                                                        onUpdateUser={handleUpdateUser}/>}>
+        </Route>
+        <Route path="/movies" element={<ProtectedRoute element={Movies}
+                                                       isLoggedIn={isLoggedIn}
+                                                       onSaveMovie={handleSaveMovie}
+                                                       onDeleteMovie={handleDeleteMovie}
+                                                       savedMovies={myMovies}/>}>
+        </Route>
+        <Route path="/saved-movies" element={<ProtectedRoute element={SavedMovies}
+                                                             isLoggedIn={isLoggedIn}
+                                                             onDeleteMovie={handleDeleteMovie}
+                                                             savedMovies={myMovies}/>}>
+        </Route>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </CurrentUserContext.Provider>

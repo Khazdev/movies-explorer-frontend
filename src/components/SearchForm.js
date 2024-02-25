@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 export function SearchForm({onSearch, onFilterShortMovies, searchQuery, isFilterShortMovies}) {
-  const [searchText, setSearchText] = useState(searchQuery);
+  const [searchText, setSearchText] = useState(searchQuery || '');
   const [error, setError] = useState('');
-  const [isToggleChecked, setIsToggleChecked] = useState(isFilterShortMovies);
-
-  useEffect(() => {
-    setIsToggleChecked(isFilterShortMovies)
-  }, [isFilterShortMovies]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -16,7 +11,6 @@ export function SearchForm({onSearch, onFilterShortMovies, searchQuery, isFilter
   }, [searchQuery]);
 
   const handleIsToggleChecked = (checked) => {
-    setIsToggleChecked(checked);
     onFilterShortMovies(checked)
   };
 
@@ -53,7 +47,7 @@ export function SearchForm({onSearch, onFilterShortMovies, searchQuery, isFilter
         <label className="search__toggle">
           <input className="search__toggle-checkbox"
                  type="checkbox"
-                 checked={isToggleChecked}
+                 checked={isFilterShortMovies}
                  onChange={(event) => handleIsToggleChecked(event.target.checked)}
           />
           <div className="search__toggle-switch"></div>

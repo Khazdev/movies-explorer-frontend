@@ -13,7 +13,7 @@ export function MoviesCardList({
                                  error
                                }) {
 
-  const [moviesToRender, setMoviesToRender] = useState([]);
+  const [moviesToRender, setMoviesToRender] = useState(movies);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -37,9 +37,14 @@ export function MoviesCardList({
     };
   }, [handleResize]);
 
+  const handleDeleteMovie = (movieId) => {
+    onDeleteMovie(movieId);
+    if (!allMoviesFlag){
+    setMoviesToRender(moviesToRender.filter((movie) => movie._id !== movieId));
+    }
+  };
   return (
     <section className="movies">
-
       {error ? (
         <div className="movies__message movies__message_error">
           Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и
@@ -58,7 +63,7 @@ export function MoviesCardList({
                       key={movie._id}
                       movie={movie}
                       allMoviesFlag={allMoviesFlag}
-                      onDeleteMovie={onDeleteMovie}
+                      onDeleteMovie={handleDeleteMovie}
                       movieId={movie._id}
                       isLiked={true}
                     />
@@ -78,7 +83,7 @@ export function MoviesCardList({
                           movie={movie}
                           allMoviesFlag={allMoviesFlag}
                           onSaveMovie={onSaveMovie}
-                          onDeleteMovie={onDeleteMovie}
+                          onDeleteMovie={handleDeleteMovie}
                           movieId={movieId}
                           isLiked={!!movieId}
                         />
