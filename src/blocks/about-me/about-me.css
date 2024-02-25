@@ -1,0 +1,19 @@
+.about-me {
+  margin-top: 108px;
+  margin-right: 70px;
+  margin-left: 70px;
+}
+@media screen and (max-width: 990px) {
+  .about-me {
+    margin-top: 90px;
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+}
+@media screen and (max-width: 690px) {
+  .about-me {
+    margin-top: 70px;
+    margin-right: 14px;
+    margin-left: 14px;
+  }
+}

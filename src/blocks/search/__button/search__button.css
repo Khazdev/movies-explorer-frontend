@@ -1,0 +1,15 @@
+.search__button {
+  display: block;
+  object-fit: cover;
+  background: url('../../../images/search.svg') no-repeat;
+  width: 44px;
+  height: 44px;
+  border: none;
+  align-self: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search__button:hover {
+  opacity: 80%;
+}

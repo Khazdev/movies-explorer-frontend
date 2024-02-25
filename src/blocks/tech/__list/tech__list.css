@@ -1,0 +1,26 @@
+.tech__list {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 100px;
+  padding: 0;
+}
+
+@media screen and (max-width: 990px) {
+  .tech__list {
+    margin-bottom: 90px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .tech__list {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 84px));
+    gap: 10px;
+    margin-bottom: 70px;
+  }
+}

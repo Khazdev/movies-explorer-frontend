@@ -1,0 +1,14 @@
+.auth-form__transition-text {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0;
+  color: #8B8B8B;
+}
+@media screen and (max-width: 690px) {
+  .auth-form__transition-text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

@@ -1,0 +1,15 @@
+.hero__links {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  gap: 10px;
+  margin: 0 0 30px;
+}
+
+@media screen and (max-width: 690px) {
+  .hero__links {
+    gap: 6px;
+    margin-bottom: 17px;
+  }
+}

@@ -1,0 +1,6 @@
+.movie-card__save-button_state_saved {
+  width: 21px;
+  height: 21px;
+  background: url("../../../../images/saved.svg");
+  border: none;
+}

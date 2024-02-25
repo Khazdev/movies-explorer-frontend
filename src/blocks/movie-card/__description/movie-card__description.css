@@ -1,0 +1,15 @@
+.movie-card__description {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #fff;
+}
+
+@media screen and (max-width: 690px) {
+  .movie-card__description {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

@@ -1,0 +1,25 @@
+.hero__link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #303030;
+  min-height: 36px;
+  min-width: 96px;
+}
+
+@media screen and (max-width: 690px) {
+  .hero__link {
+    min-height: 26px;
+    min-width: 82px;
+    font-size: 10px;
+  }
+}
+

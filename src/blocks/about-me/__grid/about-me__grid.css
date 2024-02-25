@@ -1,0 +1,25 @@
+.about-me__grid {
+  display: grid;
+  grid-template-columns: 600px 1fr;
+  column-gap: 0;
+  justify-content: space-between;
+  margin-top: 65px;
+}
+@media screen and (max-width: 990px) {
+  .about-me__grid {
+    grid-template-columns: 362px 1fr;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .about-me__grid {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-items: center;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+}

@@ -1,0 +1,12 @@
+.tech {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #272727;
+}
+
+@media screen and (max-width: 690px) {
+  .tech {
+    background-color: #202020;
+  }
+}

@@ -1,0 +1,18 @@
+.auth-form__title {
+  align-self: flex-start;
+  margin: 40px 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+@media screen and (max-width: 690px) {
+  .auth-form__title {
+    align-self: center;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+}

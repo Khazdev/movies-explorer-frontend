@@ -1,0 +1,21 @@
+.movie-card__info-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-top: 14px;
+}
+@media screen and (max-width: 990px) {
+  .movie-card__info-container {
+    margin-top: 25px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .movie-card__info-container {
+    margin-top: 20px;
+  }
+}

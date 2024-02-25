@@ -1,0 +1,15 @@
+.about__technology {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #8B8B8B;
+}
+@media screen and (max-width: 690px) {
+  .about__technology {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

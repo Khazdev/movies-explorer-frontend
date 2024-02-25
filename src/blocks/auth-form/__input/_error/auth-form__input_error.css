@@ -1,0 +1,11 @@
+.auth-form__input_error {
+  color: #EE3465;
+  flex-wrap: wrap;
+  display: flex;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0;
+  text-align: left;
+  visibility: hidden;
+}

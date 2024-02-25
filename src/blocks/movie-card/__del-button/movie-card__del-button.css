@@ -1,0 +1,17 @@
+.movie-card__del-button {
+  position: absolute;
+  cursor: pointer;
+  top: 14px;
+  right: 14px;
+  padding: 0;
+  width: 21px;
+  height: 21px;
+  border-radius: 30px;
+  background-color: #313131;
+  background-image: url("../../../images/xbutton.svg");
+  background-size: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  visibility: hidden;
+}

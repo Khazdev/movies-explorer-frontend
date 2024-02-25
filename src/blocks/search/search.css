@@ -1,0 +1,28 @@
+.search {
+  margin-top: 80px;
+  margin-right: 70px;
+  margin-left: 70px;
+}
+
+.search::after {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #424242;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 990px) {
+  .search {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .search {
+    margin-right: 14px;
+    margin-left: 14px;
+  }
+}

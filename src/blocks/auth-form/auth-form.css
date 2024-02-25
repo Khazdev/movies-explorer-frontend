@@ -1,0 +1,25 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-items: center;
+  align-items: center;
+  max-width: 396px;
+  width: 100%;
+  margin: 70px auto;
+}
+
+@media screen and (max-width: 990px) {
+  .auth-form {
+    margin-top: 232px;
+    margin-bottom: 232px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .auth-form {
+    margin-top: 56px;
+    margin-bottom: 30px;
+    max-width: 260px;
+  }
+}

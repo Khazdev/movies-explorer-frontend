@@ -1,0 +1,11 @@
+.profile__buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+@media screen and (max-width: 990px) {
+  .profile__buttons-container {
+    gap: 16px;
+  }
+}

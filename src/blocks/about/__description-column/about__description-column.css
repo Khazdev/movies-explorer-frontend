@@ -1,0 +1,15 @@
+.about__description-column {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+@media screen and (max-width: 990px) {
+  .about__description-column {
+    gap: 22px;
+  }
+}
+@media screen and (max-width: 690px) {
+  .about__description-column {
+    gap: 16px;
+  }
+}

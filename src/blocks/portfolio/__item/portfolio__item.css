@@ -1,0 +1,18 @@
+.portfolio__item {
+  padding: 0;
+  margin: 0;
+}
+
+.portfolio__item:not(:last-child)::after {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #424242;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 990px) {
+  .portfolio__item:not(:last-child)::after {
+    border-bottom: 1px solid #E6E6E6;
+  }
+}

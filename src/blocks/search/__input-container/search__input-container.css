@@ -1,0 +1,6 @@
+.search__input-container {
+  display: grid;
+  grid-template-columns: 1fr 44px;
+  justify-content: space-between;
+  gap: 10px;
+}

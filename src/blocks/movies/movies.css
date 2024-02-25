@@ -1,0 +1,17 @@
+.movies {
+  margin: 70px 70px 28px;
+}
+
+@media screen and (max-width: 990px) {
+  .movies {
+    margin: 80px 30px 17px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .movies {
+    margin-top: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}

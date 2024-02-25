@@ -1,0 +1,29 @@
+.about-me__header {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-me__header::after {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #DADADA;
+  margin-top: 23px;
+}
+
+@media screen and (max-width: 690px) {
+  .about-me__header::after {
+    margin-top: 28px;
+  }
+  .about-me__header {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
