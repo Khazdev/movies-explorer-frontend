@@ -35,8 +35,8 @@ function App() {
     handleValidateToken();
   }, []);
 
-  const handleSignUp = async (name, email, password) => {
-    await api.signUp(name, email, password)
+  const handleSignUp = async (data) => {
+    await api.signUp(data.name, data.email, data.password)
       .then(() => {
         setTimeout(() => {
           navigate("/signin", {replace: true});
