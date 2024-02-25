@@ -15,7 +15,6 @@ const Navigation = ({isMobile}) => {
                 location.pathname==='/' ? 'header__link_type_active':''
               }`}
               to="/"
-              onClick={() => console.log('Clicked Главная')}
             >
               Главная
             </Link>
@@ -33,7 +32,6 @@ const Navigation = ({isMobile}) => {
               }
               `}
             to="/movies"
-            onClick={() => console.log('Clicked Фильмы')}
           >
             Фильмы
           </Link>
@@ -50,7 +48,6 @@ const Navigation = ({isMobile}) => {
               }
               `}
             to="/saved-movies"
-            onClick={() => console.log('Clicked Сохранённые фильмы')}
           >
             Сохранённые фильмы
           </Link>

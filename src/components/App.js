@@ -8,6 +8,7 @@ import NotFound from "./NotFound";
 import { Route, Routes, useNavigate } from "react-router";
 import { api } from "../utils/MainApi";
 import { useEffect, useState } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function App() {
   const navigate = useNavigate();
@@ -126,20 +127,22 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route exact path="/" element={<Main isLoggedIn={isLoggedIn}/>}/>
-      <Route path="/signup" element={<Register onRegister={handleSignUp}/>}/>
-      <Route path="/signin" element={<Login onLogin={handleSignIn}/>}/>
-      <Route path="/profile" element={<Profile
-        onSignOut={handleSignOut}
-        currentUser={currentUser}
-        onUpdateUser={handleUpdateUser}
-      />}/>
-      <Route path="/movies" element={<Movies isLoggedIn={isLoggedIn} onSaveMovie={handleSaveMovie}
-                                             onDeleteMovie={handleDeleteMovie} savedMovies={myMovies}/>}/>
-      <Route path="/saved-movies" element={<SavedMovies onDeleteMovie={handleDeleteMovie} savedMovies={myMovies}/>}/>
-      <Route path="*" element={<NotFound/>}/>
-    </Routes>
+    <CurrentUserContext.Provider value={currentUser}>
+      <Routes>
+        <Route exact path="/" element={<Main isLoggedIn={isLoggedIn}/>}/>
+        <Route path="/signup" element={<Register onRegister={handleSignUp}/>}/>
+        <Route path="/signin" element={<Login onLogin={handleSignIn}/>}/>
+        <Route path="/profile" element={<Profile
+          onSignOut={handleSignOut}
+          currentUser={currentUser}
+          onUpdateUser={handleUpdateUser}
+        />}/>
+        <Route path="/movies" element={<Movies isLoggedIn={isLoggedIn} onSaveMovie={handleSaveMovie}
+                                               onDeleteMovie={handleDeleteMovie} savedMovies={myMovies}/>}/>
+        <Route path="/saved-movies" element={<SavedMovies onDeleteMovie={handleDeleteMovie} savedMovies={myMovies}/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+    </CurrentUserContext.Provider>
   );
 }
 

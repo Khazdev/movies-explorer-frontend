@@ -1,13 +1,13 @@
 import Header from "./Header";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export function Profile({onSignOut, currentUser, onUpdateUser}) {
-
+export function Profile({onSignOut, onUpdateUser}) {
+  const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
 
   React.useEffect(() => {
-
     setName(currentUser.name || "");
     setEmail(currentUser.email || "");
   }, [currentUser]);
@@ -31,7 +31,7 @@ export function Profile({onSignOut, currentUser, onUpdateUser}) {
         isSignedIn={true}
       ></Header>
       <section className="profile">
-        <h1 className='profile__title'>Привет, Виталий!</h1>
+        <h1 className='profile__title'>Привет, {name}!</h1>
         <form className='profile__form' onSubmit={handleSubmit}>
           <ul className='profile__fields'>
             <li className="profile__field">
