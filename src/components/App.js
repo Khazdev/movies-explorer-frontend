@@ -38,9 +38,7 @@ function App() {
   const handleSignUp = async (data, setError) => {
     await api.signUp(data.name, data.email, data.password)
       .then(() => {
-        setTimeout(() => {
-          navigate("/signin", {replace: true});
-        }, 2000)
+        handleSignIn(data)
       })
       .catch((error) => {
         setError(error.message)
