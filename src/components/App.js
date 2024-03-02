@@ -94,7 +94,7 @@ function App() {
   function handleSignOut() {
     localStorage.clear();
     setIsLoggedIn(false);
-    navigate("/signin");
+    navigate("/");
   }
 
   const handleUpdateUser = (email, name) => {
