@@ -9,7 +9,7 @@ class Api {
       ...options,
       headers: {
         ...options.headers,
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     };
     return fetch(this.baseurl + uri, updatedOptions).then(this._checkResponse);

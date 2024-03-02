@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-export function SearchForm({onSearch, onFilterShortMovies, searchQuery, isFilterShortMovies}) {
-  const [searchText, setSearchText] = useState(searchQuery || '');
-  const [error, setError] = useState('');
+export function SearchForm({
+  onSearch,
+  onFilterShortMovies,
+  searchQuery,
+  isFilterShortMovies,
+}) {
+  const [searchText, setSearchText] = useState(searchQuery || "");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (searchQuery) {
@@ -11,16 +16,16 @@ export function SearchForm({onSearch, onFilterShortMovies, searchQuery, isFilter
   }, [searchQuery]);
 
   const handleIsToggleChecked = (checked) => {
-    onFilterShortMovies(checked)
+    onFilterShortMovies(checked);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (searchText.trim()==='') {
-      setError('Нужно ввести ключевое слово');
+    if (searchText.trim() === "") {
+      setError("Нужно ввести ключевое слово");
     } else {
-      setError('');
+      setError("");
       onSearch(searchText);
     }
   };
@@ -39,22 +44,22 @@ export function SearchForm({onSearch, onFilterShortMovies, searchQuery, isFilter
           />
           <button className="search__button" type="submit"></button>
           <span
-            className={`search__input-error ${error && 'search__input-error_visible'}`}
+            className={`search__input-error ${error && "search__input-error_visible"}`}
           >
-                {error}
-              </span>
+            {error}
+          </span>
         </div>
         <label className="search__toggle">
-          <input className="search__toggle-checkbox"
-                 type="checkbox"
-                 checked={isFilterShortMovies}
-                 onChange={(event) => handleIsToggleChecked(event.target.checked)}
+          <input
+            className="search__toggle-checkbox"
+            type="checkbox"
+            checked={isFilterShortMovies}
+            onChange={(event) => handleIsToggleChecked(event.target.checked)}
           />
           <div className="search__toggle-switch"></div>
           <span className="search__toggle-label">Короткометражки</span>
         </label>
       </form>
-
     </section>
   );
 }

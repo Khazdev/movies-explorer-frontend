@@ -31,4 +31,3 @@ export const moviesApi = new MoviesApi({
     "Content-Type": "application/json",
   },
 });
-

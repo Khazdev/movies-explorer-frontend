@@ -23,7 +23,7 @@ export function AuthForm({ isRegister, onSubmit }) {
           setError,
         )
       : onSubmit({ email: values.email, password: values.password }, setError);
-    setIsSubmitting(false)
+    setIsSubmitting(false);
   }
 
   return (
