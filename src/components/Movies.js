@@ -5,7 +5,10 @@ import Header from "./Header";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import { moviesApi } from "../utils/MoviesApi";
-import { filterMoviesBySearchText } from "../utils/moviesUtils";
+import {
+  filterMoviesBySearchText,
+  filterShortMovies,
+} from "../utils/moviesUtils";
 
 export function Movies({
   isLoggedIn,
@@ -116,9 +119,7 @@ export function Movies({
       {!loading && filteredMovies && (
         <MoviesCardList
           movies={
-            shortMoviesFlag
-              ? filteredMovies.filter((movie) => movie.duration < 40)
-              : filteredMovies
+            shortMoviesFlag ? filterShortMovies(filteredMovies) : filteredMovies
           }
           allMoviesFlag={true}
           displayedCards={displayedCards}

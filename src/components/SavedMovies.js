@@ -3,7 +3,10 @@ import MoviesCardList from "./MoviesCardList";
 import Header from "./Header";
 import Footer from "./Footer";
 import React, { useEffect, useState } from "react";
-import { filterMoviesBySearchText } from "../utils/moviesUtils";
+import {
+  filterMoviesBySearchText,
+  filterShortMovies,
+} from "../utils/moviesUtils";
 
 export function SavedMovies({ onDeleteMovie, savedMovies }) {
   const [shortMoviesFlag, setShortMoviesFlag] = useState(false);
@@ -20,7 +23,7 @@ export function SavedMovies({ onDeleteMovie, savedMovies }) {
 
   const handleDeleteMovie = (movieId) => {
     onDeleteMovie(movieId);
-    setFilteredMovies(filteredMovies.filter((movie) => movie._id !== movieId));
+    setFilteredMovies(savedMovies);
   };
   const handleSetShortMoviesFlag = (isActive) => {
     setShortMoviesFlag(isActive);
@@ -28,12 +31,9 @@ export function SavedMovies({ onDeleteMovie, savedMovies }) {
 
   const handleSearch = (searchText) => {
     if (savedMovies && savedMovies.length !== 0) {
-      const filteredMovies = filterMoviesBySearchText(searchText, savedMovies);
-      setFilteredMovies(filteredMovies);
       setSearchQuery(searchText);
     }
   };
-
   return (
     <>
       <Header isSignedIn={true}></Header>
@@ -45,9 +45,15 @@ export function SavedMovies({ onDeleteMovie, savedMovies }) {
       ></SearchForm>
       <MoviesCardList
         movies={
-          shortMoviesFlag
-            ? filteredMovies.filter((movie) => movie.duration < 40)
-            : filteredMovies
+          searchQuery === ""
+            ? shortMoviesFlag
+              ? filterShortMovies(savedMovies)
+              : savedMovies
+            : shortMoviesFlag
+              ? filterShortMovies(
+                  filterMoviesBySearchText(searchQuery, savedMovies),
+                )
+              : filterMoviesBySearchText(searchQuery, savedMovies)
         }
         allMoviesFlag={false}
         isShortMoviesActive={shortMoviesFlag}
