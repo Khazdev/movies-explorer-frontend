@@ -20,7 +20,7 @@ function App() {
   const [isAppLoaded, setIsAppLoaded] = useState(false);
 
   useEffect(() => {
-    if (isLoggedIn && !currentUser) {
+    if (isLoggedIn) {
       api
         .getCurrentUser()
         .then((response) => {
@@ -79,8 +79,9 @@ function App() {
     if (jwt && !isLoggedIn) {
       api
         .getCurrentUser()
-        .then(() => {
+        .then((res) => {
           localStorage.setItem("loggedIn", "true");
+          setCurrentUser(res);
           setIsLoggedIn(true);
           navigate("/movies", { replace: true });
         })
@@ -150,13 +151,18 @@ function App() {
           <Route
             exact
             path="/"
-            element={<ProtectedRoute element={Main} isLoggedIn={isLoggedIn} />}
+            element={<Main isLoggedIn={isLoggedIn} />}
           ></Route>
           <Route
             path="/signup"
-            element={<Register onRegister={handleSignUp} />}
+            element={
+              <Register onRegister={handleSignUp} isLoggedIn={isLoggedIn} />
+            }
           />
-          <Route path="/signin" element={<Login onLogin={handleSignIn} />} />
+          <Route
+            path="/signin"
+            element={<Login onLogin={handleSignIn} isLoggedIn={isLoggedIn} />}
+          />
           <Route
             path="/profile"
             element={

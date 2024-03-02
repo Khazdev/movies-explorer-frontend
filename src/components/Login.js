@@ -1,13 +1,14 @@
 import AuthForm from "./AuthForm";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
-export function Login({onLogin}) {
+export function Login({ onLogin, isLoggedIn }) {
+  const navigate = useNavigate();
 
-  return (
-    <AuthForm
-      isRegister={false}
-      onSubmit={onLogin}
-    />
-  );
+  useEffect(() => {
+    isLoggedIn && navigate("/movies", { replace: true });
+  });
+  return <AuthForm isRegister={false} onSubmit={onLogin} />;
 }
 
 export default Login;
