@@ -77,7 +77,6 @@ function App() {
         .then((res) => {
           localStorage.setItem("loggedIn", "true");
           setCurrentUser(res);
-          console.log(res);
           setIsLoggedIn(true);
         })
         .catch((error) => {
@@ -92,8 +91,8 @@ function App() {
     navigate("/");
   }
 
-  const handleUpdateUser = (email, name, setError) => {
-    api
+  const handleUpdateUser = async (email, name, setError) => {
+    await api
       .updateUser(email, name)
       .then((data) => {
         setCurrentUser(data);
@@ -105,8 +104,8 @@ function App() {
       });
   };
 
-  const handleSaveMovie = (movieData) => {
-    api
+  const handleSaveMovie = async (movieData) => {
+    await api
       .createMovie(movieData)
       .then((res) => {
         setMyMovies([res, ...myMovies]);
@@ -116,8 +115,8 @@ function App() {
       });
   };
 
-  const handleDeleteMovie = (movieId) => {
-    api
+  const handleDeleteMovie = async (movieId) => {
+    await api
       .deleteMovie(movieId)
       .then((res) => {
         const moviesAfterDelete = myMovies.filter(

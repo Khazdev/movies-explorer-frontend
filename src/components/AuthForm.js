@@ -7,10 +7,12 @@ import { EMAIL_REGEX } from "../constants/constants";
 export function AuthForm({ isRegister, onSubmit }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation();
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
     setError("");
+    setIsSubmitting(true);
     isRegister
       ? onSubmit(
           {
@@ -21,6 +23,7 @@ export function AuthForm({ isRegister, onSubmit }) {
           setError,
         )
       : onSubmit({ email: values.email, password: values.password }, setError);
+    setIsSubmitting(false)
   }
 
   return (
@@ -50,6 +53,7 @@ export function AuthForm({ isRegister, onSubmit }) {
                 minLength="2"
                 maxLength="40"
                 required
+                disabled={isSubmitting}
               />
               <span
                 className={`auth-form__input_error ${errors.name && "auth-form__input_error_visible"}`}
@@ -69,6 +73,7 @@ export function AuthForm({ isRegister, onSubmit }) {
               pattern={EMAIL_REGEX}
               value={values.email || ""}
               required
+              disabled={isSubmitting}
             />
             <span
               className={`auth-form__input_error ${errors.email && "auth-form__input_error_visible"}`}
@@ -82,11 +87,12 @@ export function AuthForm({ isRegister, onSubmit }) {
               className="auth-form__input"
               type="password"
               name="password"
-              autoComplete="on"
+              autoComplete="off"
               placeholder="Введите пароль"
               onChange={handleChange}
               value={values.password || ""}
               required
+              disabled={isSubmitting}
             />
             <span
               className={`auth-form__input_error ${errors.password && "auth-form__input_error_visible"}`}
@@ -106,6 +112,7 @@ export function AuthForm({ isRegister, onSubmit }) {
           <button
             type="submit"
             className={`auth-form__submit-button ${!isValid && "auth-form__submit-button_disabled"}`}
+            disabled={isSubmitting}
           >
             {isRegister ? "Зарегистрироваться" : "Войти"}
           </button>

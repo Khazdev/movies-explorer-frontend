@@ -7,12 +7,12 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
   const currentUser = useContext(CurrentUserContext);
   const [isEqualsInfo, setIsEqualsInfo] = useState(true);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
 
   useEffect(() => {
-    console.log(currentUser)
     if (
       currentUser.name === values.name &&
       currentUser.email === values.email
@@ -22,6 +22,7 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
       setIsEqualsInfo(false);
     }
   }, [currentUser.email, currentUser.name, values]);
+
   useEffect(() => {
     if (currentUser) {
       resetForm(currentUser);
@@ -32,7 +33,9 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
     e.preventDefault();
     const validatedEmail = values.email;
     const validatedName = values.name;
+    setIsSubmitting(true);
     onUpdateUser(validatedEmail, validatedName, setError);
+    setIsSubmitting(false);
   }
 
   return (
@@ -55,6 +58,7 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
                   placeholder="Имя"
                   value={values.name || ""}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                   required
                 />
               </div>
@@ -70,6 +74,7 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
                   value={values.email || ""}
                   required
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
               </div>
               <span className="profile__input-error">{errors.email}</span>
@@ -82,6 +87,7 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
             <button
               type="submit"
               className={`profile__button profile__button_edit ${(isEqualsInfo || !isValid) && "profile__button_edit_disabled"}`}
+              disabled={isSubmitting}
             >
               Редактировать
             </button>
