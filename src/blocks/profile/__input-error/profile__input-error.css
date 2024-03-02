@@ -5,9 +5,9 @@
   letter-spacing: 0;
   text-align: right;
   color: #EE3465;
-  height: 12px;
+  height: 15px;
   display: flex;
-  align-self: flex-end;
+  align-self: center;
 }
 
 @media screen and (max-width: 690px) {

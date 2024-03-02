@@ -35,30 +35,16 @@ function App() {
     handleValidateToken();
     if (isLoggedIn) {
       getSavedMovies();
+      navigate("/movies", { replace: true });
     }
   }, [isLoggedIn]);
-
-  // useEffect(() => {
-  //   handleValidateToken();
-  // }, []);
-
-  // useEffect(() => {
-  //   if (myMovies) {
-  //     setIsAppLoaded(true);
-  //   }
-  // }, [myMovies]);
-
-  // useEffect(() => {
-  //   if (!myMovies || (myMovies && myMovies.length === 0)) {
-  //     getSavedMovies();
-  //   }
-  // }, []);
 
   const handleSignUp = async (data, setError) => {
     await api
       .signUp(data.name, data.email, data.password)
       .then(() => {
         handleSignIn(data);
+        setError("");
       })
       .catch((error) => {
         setError(error.message);
@@ -74,6 +60,7 @@ function App() {
         localStorage.setItem("jwt", jwt);
         setIsLoggedIn(true);
         localStorage.setItem("loggedIn", "true");
+        setError("");
         navigate("/movies");
       })
       .catch((error) => {
@@ -84,14 +71,14 @@ function App() {
 
   const handleValidateToken = useCallback(() => {
     const jwt = localStorage.getItem("jwt");
-    if (jwt && !isLoggedIn) {
+    if (jwt) {
       api
         .getCurrentUser()
         .then((res) => {
           localStorage.setItem("loggedIn", "true");
           setCurrentUser(res);
+          console.log(res);
           setIsLoggedIn(true);
-          navigate("/movies", { replace: true });
         })
         .catch((error) => {
           console.log(error);
@@ -105,13 +92,15 @@ function App() {
     navigate("/");
   }
 
-  const handleUpdateUser = (email, name) => {
+  const handleUpdateUser = (email, name, setError) => {
     api
       .updateUser(email, name)
       .then((data) => {
         setCurrentUser(data);
+        setError("");
       })
       .catch((error) => {
+        setError(error.message);
         console.log(error);
       });
   };

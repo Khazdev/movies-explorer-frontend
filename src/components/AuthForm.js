@@ -105,7 +105,7 @@ export function AuthForm({ isRegister, onSubmit }) {
           )}
           <button
             type="submit"
-            className={`auth-form__submit-button ${!isValid && "auth-form__submit-button_disabled"}`} //auth-form__submit-button_disabled"
+            className={`auth-form__submit-button ${!isValid && "auth-form__submit-button_disabled"}`}
           >
             {isRegister ? "Зарегистрироваться" : "Войти"}
           </button>
