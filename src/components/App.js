@@ -7,7 +7,7 @@ import SavedMovies from "./SavedMovies";
 import NotFound from "./NotFound";
 import { Route, Routes, useNavigate } from "react-router";
 import { api } from "../utils/MainApi";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -17,34 +17,42 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localLoggedIn);
   const [currentUser, setCurrentUser] = useState({});
   const [myMovies, setMyMovies] = useState(null);
-  const [isAppLoaded, setIsAppLoaded] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const handleResize = useCallback(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      api
-        .getCurrentUser()
-        .then((response) => {
-          setCurrentUser(response);
-        })
-        .catch((error) => console.log(error));
-    }
-  }, [isLoggedIn]);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [handleResize]);
 
   useEffect(() => {
     handleValidateToken();
-  }, []);
-
-  useEffect(() => {
-    if (myMovies) {
-      setIsAppLoaded(true);
-    }
-  }, [myMovies]);
-
-  useEffect(() => {
-    if (!myMovies || (myMovies && myMovies.length === 0)) {
+    if (isLoggedIn) {
       getSavedMovies();
     }
-  }, []);
+  }, [isLoggedIn]);
+
+  // useEffect(() => {
+  //   handleValidateToken();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (myMovies) {
+  //     setIsAppLoaded(true);
+  //   }
+  // }, [myMovies]);
+
+  // useEffect(() => {
+  //   if (!myMovies || (myMovies && myMovies.length === 0)) {
+  //     getSavedMovies();
+  //   }
+  // }, []);
 
   const handleSignUp = async (data, setError) => {
     await api
@@ -74,7 +82,7 @@ function App() {
       });
   };
 
-  const handleValidateToken = () => {
+  const handleValidateToken = useCallback(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt && !isLoggedIn) {
       api
@@ -89,7 +97,7 @@ function App() {
           console.log(error);
         });
     }
-  };
+  }, []);
 
   function handleSignOut() {
     localStorage.clear();
@@ -146,60 +154,61 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      {isAppLoaded && (
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={<Main isLoggedIn={isLoggedIn} />}
-          ></Route>
-          <Route
-            path="/signup"
-            element={
-              <Register onRegister={handleSignUp} isLoggedIn={isLoggedIn} />
-            }
-          />
-          <Route
-            path="/signin"
-            element={<Login onLogin={handleSignIn} isLoggedIn={isLoggedIn} />}
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute
-                element={Profile}
-                isLoggedIn={isLoggedIn}
-                onSignOut={handleSignOut}
-                onUpdateUser={handleUpdateUser}
-              />
-            }
-          ></Route>
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRoute
-                element={Movies}
-                isLoggedIn={isLoggedIn}
-                onSaveMovie={handleSaveMovie}
-                onDeleteMovie={handleDeleteMovie}
-                savedMovies={myMovies}
-              />
-            }
-          ></Route>
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRoute
-                element={SavedMovies}
-                isLoggedIn={isLoggedIn}
-                onDeleteMovie={handleDeleteMovie}
-                savedMovies={myMovies}
-              />
-            }
-          ></Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      )}
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={<Main isLoggedIn={isLoggedIn} windowWidth={windowWidth} />}
+        ></Route>
+        <Route
+          path="/signup"
+          element={
+            <Register onRegister={handleSignUp} isLoggedIn={isLoggedIn} />
+          }
+        />
+        <Route
+          path="/signin"
+          element={<Login onLogin={handleSignIn} isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute
+              element={Profile}
+              isLoggedIn={isLoggedIn}
+              onSignOut={handleSignOut}
+              onUpdateUser={handleUpdateUser}
+              windowWidth={windowWidth}
+            />
+          }
+        ></Route>
+        <Route
+          path="/movies"
+          element={
+            <ProtectedRoute
+              element={Movies}
+              isLoggedIn={isLoggedIn}
+              onSaveMovie={handleSaveMovie}
+              onDeleteMovie={handleDeleteMovie}
+              savedMovies={myMovies}
+              windowWidth={windowWidth}
+            />
+          }
+        ></Route>
+        <Route
+          path="/saved-movies"
+          element={
+            <ProtectedRoute
+              element={SavedMovies}
+              isLoggedIn={isLoggedIn}
+              onDeleteMovie={handleDeleteMovie}
+              savedMovies={myMovies}
+              windowWidth={windowWidth}
+            />
+          }
+        ></Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </CurrentUserContext.Provider>
   );
 }

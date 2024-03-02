@@ -1,14 +1,12 @@
 import logo from "../images/logo.svg";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import burger from "../images/burger.svg"
+import burger from "../images/burger.svg";
 import Navigation from "./Navigation";
 import BurgerMenu from "./BrugerMenu";
 import Account from "./Account";
 
-function Header({isSignedIn}) {
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+function Header({ isSignedIn, windowWidth }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleOpenMobileMenu = () => {
@@ -19,24 +17,12 @@ function Header({isSignedIn}) {
     setIsMobileMenuOpen(false);
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   const isMobile = windowWidth <= 990;
 
   return (
     <header className="header">
       <Link className="header__link" to="/">
-        <img className="header__logo" src={logo} alt="Лого"/>
+        <img className="header__logo" src={logo} alt="Лого" />
       </Link>
       {isSignedIn ? (
         isMobile ? (
@@ -53,12 +39,14 @@ function Header({isSignedIn}) {
                 alt="кнопка меню"
               ></img>
             </button>
-            {isMobileMenuOpen && <BurgerMenu
-              isMobileMenuOpen={isMobileMenuOpen}
-              handleCloseMobileMenu={handleCloseMobileMenu}
-            ></BurgerMenu>}
+            {isMobileMenuOpen && (
+              <BurgerMenu
+                isMobileMenuOpen={isMobileMenuOpen}
+                handleCloseMobileMenu={handleCloseMobileMenu}
+              ></BurgerMenu>
+            )}
           </>
-        ):(
+        ) : (
           <>
             <Navigation></Navigation>
             <div className="header__auth">
@@ -66,7 +54,7 @@ function Header({isSignedIn}) {
             </div>
           </>
         )
-      ):(
+      ) : (
         <div className="header__auth">
           <Link
             className="header__link header__link_type_registration"
@@ -74,10 +62,7 @@ function Header({isSignedIn}) {
           >
             Регистрация
           </Link>
-          <Link
-            className="header__link header__link_type_login"
-            to="/signin"
-          >
+          <Link className="header__link header__link_type_login" to="/signin">
             Войти
           </Link>
         </div>

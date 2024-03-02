@@ -1,5 +1,5 @@
 import MoviesCard from "./MoviesCard";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 
 export function MoviesCardList({
   movies,
@@ -10,21 +10,8 @@ export function MoviesCardList({
   onDeleteMovie,
   savedMovies,
   error,
+  windowWidth,
 }) {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const handleResize = useCallback(() => {
-    setWindowWidth(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [handleResize]);
-
   return (
     <section className="movies">
       {error ? (
@@ -40,16 +27,17 @@ export function MoviesCardList({
             <>
               {!allMoviesFlag ? (
                 <ul className="movies__grid">
-                  {movies.map((movie) => (
-                    <MoviesCard
-                      key={movie._id}
-                      movie={movie}
-                      allMoviesFlag={allMoviesFlag}
-                      onDeleteMovie={onDeleteMovie}
-                      movieId={movie._id}
-                      isLiked={true}
-                    />
-                  ))}
+                  {movies &&
+                    movies.map((movie) => (
+                      <MoviesCard
+                        key={movie._id}
+                        movie={movie}
+                        allMoviesFlag={allMoviesFlag}
+                        onDeleteMovie={onDeleteMovie}
+                        movieId={movie._id}
+                        isLiked={true}
+                      />
+                    ))}
                 </ul>
               ) : (
                 <>

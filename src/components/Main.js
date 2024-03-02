@@ -7,13 +7,10 @@ import AboutMe from "./AboutMe";
 import Portfolio from "./Portfolio";
 import Footer from "./Footer";
 
-function Main({isLoggedIn}) {
-
+function Main({ isLoggedIn, windowWidth }) {
   return (
     <main>
-      <Header
-        isSignedIn={isLoggedIn}
-      ></Header>
+      <Header isSignedIn={isLoggedIn} windowWidth={windowWidth}></Header>
       <Hero></Hero>
       <About></About>
       <Tech></Tech>

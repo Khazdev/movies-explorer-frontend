@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { useFormWithValidation } from "./ValidationHook";
 
-export function Profile({onSignOut, onUpdateUser}) {
+export function Profile({onSignOut, onUpdateUser, windowWidth}) {
   const currentUser = useContext(CurrentUserContext);
   const [isEqualsInfo, setIsEqualsInfo] = useState(true);
 
@@ -35,6 +35,7 @@ export function Profile({onSignOut, onUpdateUser}) {
     <>
       <Header
         isSignedIn={true}
+        windowWidth={windowWidth}
       ></Header>
       <section className="profile">
         <h1 className='profile__title'>Привет, {currentUser.name}!</h1>

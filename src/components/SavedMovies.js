@@ -8,7 +8,7 @@ import {
   filterShortMovies,
 } from "../utils/moviesUtils";
 
-export function SavedMovies({ onDeleteMovie, savedMovies }) {
+export function SavedMovies({ onDeleteMovie, savedMovies, windowWidth }) {
   const [shortMoviesFlag, setShortMoviesFlag] = useState(false);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -36,29 +36,32 @@ export function SavedMovies({ onDeleteMovie, savedMovies }) {
   };
   return (
     <>
-      <Header isSignedIn={true}></Header>
+      <Header isSignedIn={true} windowWidth={windowWidth}></Header>
       <SearchForm
         onFilterShortMovies={handleSetShortMoviesFlag}
         onSearch={handleSearch}
         searchQuery={searchQuery}
         isFilterShortMovies={shortMoviesFlag}
       ></SearchForm>
-      <MoviesCardList
-        movies={
-          searchQuery === ""
-            ? shortMoviesFlag
-              ? filterShortMovies(savedMovies)
-              : savedMovies
-            : shortMoviesFlag
-              ? filterShortMovies(
-                  filterMoviesBySearchText(searchQuery, savedMovies),
-                )
-              : filterMoviesBySearchText(searchQuery, savedMovies)
-        }
-        allMoviesFlag={false}
-        isShortMoviesActive={shortMoviesFlag}
-        onDeleteMovie={handleDeleteMovie}
-      />
+      {savedMovies && (
+        <MoviesCardList
+          movies={
+            searchQuery === ""
+              ? shortMoviesFlag
+                ? filterShortMovies(savedMovies)
+                : savedMovies
+              : shortMoviesFlag
+                ? filterShortMovies(
+                    filterMoviesBySearchText(searchQuery, savedMovies),
+                  )
+                : filterMoviesBySearchText(searchQuery, savedMovies)
+          }
+          allMoviesFlag={false}
+          isShortMoviesActive={shortMoviesFlag}
+          onDeleteMovie={handleDeleteMovie}
+          windowWidth={windowWidth}
+        />
+      )}
       <Footer></Footer>
     </>
   );

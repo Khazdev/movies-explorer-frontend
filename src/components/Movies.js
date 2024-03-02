@@ -15,6 +15,7 @@ export function Movies({
   onSaveMovie,
   onDeleteMovie,
   savedMovies,
+  windowWidth,
 }) {
   const [displayedCards, setDisplayedCards] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,7 @@ export function Movies({
   useEffect(() => {}, [shortMoviesFlag]);
 
   function generateDisplayCardsCount() {
-    const screenWidth = window.innerWidth;
+    const screenWidth = windowWidth;
     if (screenWidth >= 990) {
       setDisplayedCards(12);
     } else if (screenWidth >= 768) {
@@ -107,7 +108,7 @@ export function Movies({
   };
   return (
     <>
-      <Header isSignedIn={isLoggedIn}></Header>
+      <Header isSignedIn={isLoggedIn} windowWidth={windowWidth}></Header>
       <SearchForm
         onSearch={handleSearch}
         onFilterShortMovies={handleSetShortMoviesFlag}
