@@ -13,77 +13,86 @@ import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const navigate = useNavigate();
-  const localLoggedIn = !!localStorage.getItem('loggedIn')
+  const localLoggedIn = !!localStorage.getItem("loggedIn");
   const [isLoggedIn, setIsLoggedIn] = useState(localLoggedIn);
   const [currentUser, setCurrentUser] = useState({});
-  const [myMovies, setMyMovies] = useState([]);
+  const [myMovies, setMyMovies] = useState(null);
+  const [isAppLoaded, setIsAppLoaded] = useState(false);
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && !currentUser) {
       api
         .getCurrentUser()
         .then((response) => {
           setCurrentUser(response);
-          getSavedMovies()
         })
         .catch((error) => console.log(error));
     }
-
   }, [isLoggedIn]);
 
   useEffect(() => {
     handleValidateToken();
   }, []);
 
+  useEffect(() => {
+    if (myMovies) {
+      setIsAppLoaded(true);
+    }
+  }, [myMovies]);
+
+  useEffect(() => {
+    if (!myMovies || (myMovies && myMovies.length === 0)) {
+      getSavedMovies();
+    }
+  }, []);
+
   const handleSignUp = async (data, setError) => {
-    await api.signUp(data.name, data.email, data.password)
+    await api
+      .signUp(data.name, data.email, data.password)
       .then(() => {
-        handleSignIn(data)
+        handleSignIn(data);
       })
       .catch((error) => {
-        setError(error.message)
+        setError(error.message);
         console.log(error);
-      })
-  }
+      });
+  };
 
   const handleSignIn = async (data, setError) => {
-    await api.signIn(data.email, data.password)
+    await api
+      .signIn(data.email, data.password)
       .then((res) => {
         const jwt = res.token;
-        localStorage.setItem('jwt', jwt)
-        setIsLoggedIn(true)
-        localStorage.setItem('loggedIn', "true")
-        navigate('/movies')
+        localStorage.setItem("jwt", jwt);
+        setIsLoggedIn(true);
+        localStorage.setItem("loggedIn", "true");
+        navigate("/movies");
       })
       .catch((error) => {
-        setError(error.message)
+        setError(error.message);
         console.log(error);
-      })
-  }
+      });
+  };
 
   const handleValidateToken = () => {
     const jwt = localStorage.getItem("jwt");
     if (jwt && !isLoggedIn) {
-      api.getCurrentUser()
+      api
+        .getCurrentUser()
         .then(() => {
-          localStorage.setItem('loggedIn', "true")
-          setIsLoggedIn(true)
-          navigate('/', {replace: true})
+          localStorage.setItem("loggedIn", "true");
+          setIsLoggedIn(true);
+          navigate("/movies", { replace: true });
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     }
-  }
+  };
 
   function handleSignOut() {
-    localStorage.removeItem("jwt");
-    localStorage.removeItem("movies");
-    localStorage.removeItem("searchQuery");
-    localStorage.removeItem("filteredMovies");
-    localStorage.removeItem("shortFilmToggle");
+    localStorage.clear();
     setIsLoggedIn(false);
-    localStorage.removeItem('loggedIn')
     navigate("/signin");
   }
 
@@ -99,9 +108,10 @@ function App() {
   };
 
   const handleSaveMovie = (movieData) => {
-    api.createMovie(movieData)
-      .then(async () => {
-        await getSavedMovies();
+    api
+      .createMovie(movieData)
+      .then((res) => {
+        setMyMovies([res, ...myMovies]);
       })
       .catch((error) => {
         console.log(error);
@@ -109,9 +119,13 @@ function App() {
   };
 
   const handleDeleteMovie = (movieId) => {
-    api.deleteMovie(movieId)
-      .then(async () => {
-        await getSavedMovies();
+    api
+      .deleteMovie(movieId)
+      .then((res) => {
+        const moviesAfterDelete = myMovies.filter(
+          (movie) => movie._id !== movieId,
+        );
+        setMyMovies(moviesAfterDelete);
       })
       .catch((error) => {
         console.log(error);
@@ -119,40 +133,67 @@ function App() {
   };
 
   const getSavedMovies = async () => {
-    await api.getMovies()
+    await api
+      .getMovies()
       .then((movies) => {
         setMyMovies(movies);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Routes>
-        <Route exact path="/" element={<ProtectedRoute element={Main}
-                                                       isLoggedIn={isLoggedIn}/>}>
-        </Route>
-        <Route path="/signup" element={<Register onRegister={handleSignUp}/>}/>
-        <Route path="/signin" element={<Login onLogin={handleSignIn}/>}/>
-        <Route path="/profile" element={<ProtectedRoute element={Profile}
-                                                        isLoggedIn={isLoggedIn}
-                                                        onSignOut={handleSignOut}
-                                                        onUpdateUser={handleUpdateUser}/>}>
-        </Route>
-        <Route path="/movies" element={<ProtectedRoute element={Movies}
-                                                       isLoggedIn={isLoggedIn}
-                                                       onSaveMovie={handleSaveMovie}
-                                                       onDeleteMovie={handleDeleteMovie}
-                                                       savedMovies={myMovies}/>}>
-        </Route>
-        <Route path="/saved-movies" element={<ProtectedRoute element={SavedMovies}
-                                                             isLoggedIn={isLoggedIn}
-                                                             onDeleteMovie={handleDeleteMovie}
-                                                             savedMovies={myMovies}/>}>
-        </Route>
-        <Route path="*" element={<NotFound/>}/>
-      </Routes>
+      {isAppLoaded && (
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<ProtectedRoute element={Main} isLoggedIn={isLoggedIn} />}
+          ></Route>
+          <Route
+            path="/signup"
+            element={<Register onRegister={handleSignUp} />}
+          />
+          <Route path="/signin" element={<Login onLogin={handleSignIn} />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute
+                element={Profile}
+                isLoggedIn={isLoggedIn}
+                onSignOut={handleSignOut}
+                onUpdateUser={handleUpdateUser}
+              />
+            }
+          ></Route>
+          <Route
+            path="/movies"
+            element={
+              <ProtectedRoute
+                element={Movies}
+                isLoggedIn={isLoggedIn}
+                onSaveMovie={handleSaveMovie}
+                onDeleteMovie={handleDeleteMovie}
+                savedMovies={myMovies}
+              />
+            }
+          ></Route>
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRoute
+                element={SavedMovies}
+                isLoggedIn={isLoggedIn}
+                onDeleteMovie={handleDeleteMovie}
+                savedMovies={myMovies}
+              />
+            }
+          ></Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      )}
     </CurrentUserContext.Provider>
   );
 }

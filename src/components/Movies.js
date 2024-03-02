@@ -7,20 +7,27 @@ import Footer from "./Footer";
 import { moviesApi } from "../utils/MoviesApi";
 import { filterMoviesBySearchText } from "../utils/moviesUtils";
 
-export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
+export function Movies({
+  isLoggedIn,
+  onSaveMovie,
+  onDeleteMovie,
+  savedMovies,
+}) {
   const [displayedCards, setDisplayedCards] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [allMovies, setAllMovies] = useState([]);
-  const [shortMoviesFlag, setShortMoviesFlag] = useState(JSON.parse(localStorage.getItem("shortFilmToggle")));
-  const [filteredMovies, setFilteredMovies] = useState(null);
+  const [shortMoviesFlag, setShortMoviesFlag] = useState(
+    JSON.parse(localStorage.getItem("shortFilmToggle")),
+  );
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
-
   const handleSetShortMoviesFlag = (isActive) => {
-    localStorage.setItem("shortFilmToggle", JSON.stringify(isActive))
-    setShortMoviesFlag(isActive)
+    localStorage.setItem("shortFilmToggle", JSON.stringify(isActive));
+    setShortMoviesFlag(isActive);
   };
+  useEffect(() => {}, [shortMoviesFlag]);
 
   function generateDisplayCardsCount() {
     const screenWidth = window.innerWidth;
@@ -52,9 +59,9 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
   }, []);
 
   useEffect(() => {
-    const savedMovies = localStorage.getItem("movies");
-    if (savedMovies) {
-      setAllMovies(JSON.parse(savedMovies));
+    const cachedMovies = localStorage.getItem("movies");
+    if (cachedMovies) {
+      setAllMovies(JSON.parse(cachedMovies));
     }
   }, []);
 
@@ -63,7 +70,8 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
   };
 
   async function searchMovies(searchText) {
-    await moviesApi.searchMovies()
+    await moviesApi
+      .searchMovies()
       .then((data) => {
         localStorage.setItem("movies", JSON.stringify(data));
         setAllMovies(data);
@@ -76,14 +84,14 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
         return filteredMovies;
       })
       .catch((error) => {
-        console.error('Error fetching allMovies:', error);
+        console.error("Error fetching allMovies:", error);
         setLoading(false);
-        setError(error)
+        setError(error);
       });
   }
 
   const handleSearch = (searchText) => {
-    if (allMovies && allMovies.length!==0) {
+    if (allMovies && allMovies.length !== 0) {
       const filteredMovies = filterMoviesBySearchText(searchText, allMovies);
       setFilteredMovies(filteredMovies);
       generateDisplayCardsCount();
@@ -96,23 +104,22 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
   };
   return (
     <>
-      <Header
-        isSignedIn={isLoggedIn}
-      ></Header>
+      <Header isSignedIn={isLoggedIn}></Header>
       <SearchForm
         onSearch={handleSearch}
         onFilterShortMovies={handleSetShortMoviesFlag}
         searchQuery={searchQuery}
         isFilterShortMovies={shortMoviesFlag}
       />
-      <Preloader
-        loading={loading}
-      >
-      </Preloader>
+      <Preloader loading={loading}></Preloader>
 
-      {!loading && filteredMovies &&
+      {!loading && filteredMovies && (
         <MoviesCardList
-          movies={filteredMovies}
+          movies={
+            shortMoviesFlag
+              ? filteredMovies.filter((movie) => movie.duration < 40)
+              : filteredMovies
+          }
           allMoviesFlag={true}
           displayedCards={displayedCards}
           handleLoadMore={handleLoadMore}
@@ -122,10 +129,10 @@ export function Movies({isLoggedIn, onSaveMovie, onDeleteMovie, savedMovies}) {
           savedMovies={savedMovies}
           error={error}
         />
-      }
+      )}
       <Footer></Footer>
     </>
   );
 }
 
-export default Movies
+export default Movies;
