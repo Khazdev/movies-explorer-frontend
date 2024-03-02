@@ -1,5 +1,6 @@
 import MoviesCard from "./MoviesCard";
 import React from "react";
+import { calculateCardsToLoad } from "../utils/moviesUtils";
 
 export function MoviesCardList({
   movies,
@@ -49,7 +50,7 @@ export function MoviesCardList({
                           return savedMovie.movieId === movie.id;
                         });
                       const movieId =
-                        filteredMovies.length > 0
+                        filteredMovies && filteredMovies.length > 0
                           ? filteredMovies[0]._id
                           : undefined;
                       return (
@@ -65,34 +66,18 @@ export function MoviesCardList({
                       );
                     })}
                   </ul>
-                  {windowWidth >= 990 && displayedCards < movies.length && (
+                  {displayedCards < movies.length && (
                     <button
                       className="movies__more-button"
-                      onClick={() => handleLoadMore(3 - (displayedCards % 3))}
+                      onClick={() =>
+                        handleLoadMore(
+                          calculateCardsToLoad(windowWidth, displayedCards),
+                        )
+                      }
                     >
                       Ещё
                     </button>
                   )}
-                  {windowWidth >= 768 &&
-                    windowWidth < 990 &&
-                    displayedCards < movies.length && (
-                      <button
-                        className="movies__more-button"
-                        onClick={() => handleLoadMore(2 - (displayedCards % 2))}
-                      >
-                        Ещё
-                      </button>
-                    )}
-                  {windowWidth >= 320 &&
-                    windowWidth < 768 &&
-                    displayedCards < movies.length && (
-                      <button
-                        className="movies__more-button"
-                        onClick={() => handleLoadMore(2)}
-                      >
-                        Ещё
-                      </button>
-                    )}
                 </>
               )}
             </>

@@ -21,3 +21,13 @@ export const filterMoviesBySearchText = (searchText, movies) => {
 export function filterShortMovies(movies) {
   return movies.filter((movie) => movie.duration < 40);
 }
+
+export const calculateCardsToLoad = (windowWidth, displayedCards) => {
+  if (windowWidth >= 990) {
+    return 3 - (displayedCards % 3);
+  } else if (windowWidth >= 768) {
+    return 2 - (displayedCards % 2);
+  } else {
+    return 2;
+  }
+};

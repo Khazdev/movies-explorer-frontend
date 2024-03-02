@@ -24,7 +24,7 @@ export function Movies({
   const [shortMoviesFlag, setShortMoviesFlag] = useState(
     JSON.parse(localStorage.getItem("shortFilmToggle")),
   );
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSetShortMoviesFlag = (isActive) => {
@@ -130,6 +130,7 @@ export function Movies({
           onDeleteMovie={onDeleteMovie}
           savedMovies={savedMovies}
           error={error}
+          windowWidth={windowWidth}
         />
       )}
       <Footer></Footer>
