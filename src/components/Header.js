@@ -1,5 +1,5 @@
 import logo from "../images/logo.svg";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import burger from "../images/burger.svg";
 import Navigation from "./Navigation";

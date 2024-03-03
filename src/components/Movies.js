@@ -16,7 +16,7 @@ export function Movies({
   onSaveMovie,
   onDeleteMovie,
   savedMovies,
-  windowWidth
+  windowWidth,
 }) {
   const [displayedCards, setDisplayedCards] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -33,7 +33,6 @@ export function Movies({
     localStorage.setItem("shortFilmToggle", JSON.stringify(isActive));
     setShortMoviesFlag(isActive);
   };
-  // useEffect(() => {}, [shortMoviesFlag]);
 
   function generateDisplayCardsCount() {
     if (windowWidth >= 990) {
@@ -75,24 +74,24 @@ export function Movies({
   };
 
   async function searchMovies(searchText) {
-      await moviesApi
-        .searchMovies()
-        .then((data) => {
-          localStorage.setItem("movies", JSON.stringify(data));
-          setAllMovies(data);
-          const filteredMovies = filterMoviesBySearchText(searchText, data);
-          setFilteredMovies(filteredMovies);
-          setLoading(false);
-          setIsFetchLoading(false)
-          setSearchQuery(searchText);
-          localStorage.setItem("searchQuery", searchText);
-          localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
-        })
-        .catch((error) => {
-          console.error("Error fetching allMovies:", error);
-          setLoading(false);
-          setError(error);
-        });
+    await moviesApi
+      .searchMovies()
+      .then((data) => {
+        localStorage.setItem("movies", JSON.stringify(data));
+        setAllMovies(data);
+        const filteredMovies = filterMoviesBySearchText(searchText, data);
+        setFilteredMovies(filteredMovies);
+        setLoading(false);
+        setIsFetchLoading(false);
+        setSearchQuery(searchText);
+        localStorage.setItem("searchQuery", searchText);
+        localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
+      })
+      .catch((error) => {
+        console.error("Error fetching allMovies:", error);
+        setLoading(false);
+        setError(error);
+      });
   }
 
   const handleSearch = (searchText) => {
@@ -104,7 +103,7 @@ export function Movies({
       localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
     } else {
       setLoading(true);
-      setIsFetchLoading(true)
+      setIsFetchLoading(true);
       searchMovies(searchText);
     }
   };

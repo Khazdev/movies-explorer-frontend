@@ -9,12 +9,13 @@
 
 @media screen and (max-width: 990px) {
   .profile__fields {
-    margin-bottom: 191px;
+    margin-bottom: 155px;
   }
 }
 
 @media screen and (max-width: 690px) {
   .profile__fields {
-    gap: 15px;
+    gap: 19px;
+    margin-bottom: 324px;
   }
 }

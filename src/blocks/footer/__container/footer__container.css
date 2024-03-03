@@ -4,6 +4,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 @media screen and (max-width: 690px) {
   .footer__container {
     margin-top: 30px;

@@ -21,8 +21,7 @@ function MoviesCard({
   };
 
   function deleteMovie() {
-    onDeleteMovie(movieId);
-    setIsSaved(false);
+    onDeleteMovie(movieId, setIsSaved);
   }
 
   function saveMovie() {
@@ -38,20 +37,22 @@ function MoviesCard({
     } = movie;
     const thumbnail =
       `https://api.nomoreparties.co` + image.formats.thumbnail.url;
-    onSaveMovie({
-      country,
-      director,
-      duration,
-      year,
-      description,
-      image: imageUrl,
-      trailerLink,
-      nameRU,
-      nameEN,
-      thumbnail,
-      movieId,
-    });
-    setIsSaved(true);
+    onSaveMovie(
+      {
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image: imageUrl,
+        trailerLink,
+        nameRU,
+        nameEN,
+        thumbnail,
+        movieId,
+      },
+      setIsSaved,
+    );
   }
 
   const handleSaveMovie = () => {

@@ -8,7 +8,13 @@ export function Register({ onRegister, isLoggedIn, isFetchLoading }) {
   useEffect(() => {
     isLoggedIn && navigate("/movies", { replace: true });
   });
-  return <AuthForm isRegister={true} onSubmit={onRegister} isFetchLoading={isFetchLoading} />;
+  return (
+    <AuthForm
+      isRegister={true}
+      onSubmit={onRegister}
+      isFetchLoading={isFetchLoading}
+    />
+  );
 }
 
 export default Register;

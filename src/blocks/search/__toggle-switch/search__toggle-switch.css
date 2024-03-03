@@ -9,9 +9,11 @@
   transition: background 0.25s;
   align-self: center;
 }
+
 .search__toggle-switch:before, .search__toggle-switch:after {
   content: "";
 }
+
 .search__toggle-switch:before {
   display: block;
   background: #A0A0A0;
@@ -23,12 +25,15 @@
   right: 22px;
   transition: 0.25s;
 }
+
 .search__toggle:hover .search__toggle-switch:before {
   background: #A0A0A0;
 }
+
 .search__toggle-checkbox:checked + .search__toggle-switch {
   background: #2BE080;
 }
+
 .search__toggle-checkbox:checked + .search__toggle-switch:before {
   top: 2px;
   right: 2px;

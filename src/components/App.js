@@ -40,7 +40,7 @@ function App() {
   }, [isLoggedIn]);
 
   const handleSignUp = async (data, setError) => {
-    setIsFetchLoading(true)
+    setIsFetchLoading(true);
     await api
       .signUp(data.name, data.email, data.password)
       .then(() => {
@@ -50,13 +50,14 @@ function App() {
       .catch((error) => {
         setError(error.message);
         console.log(error);
-      }).finally(()=>{
-        setIsFetchLoading(false)
+      })
+      .finally(() => {
+        setIsFetchLoading(false);
       });
   };
 
   const handleSignIn = async (data, setError) => {
-    setIsFetchLoading(true)
+    setIsFetchLoading(true);
     await api
       .signIn(data.email, data.password)
       .then((res) => {
@@ -70,8 +71,9 @@ function App() {
       .catch((error) => {
         setError(error.message);
         console.log(error);
-      }).finally(()=>{
-        setIsFetchLoading(false)
+      })
+      .finally(() => {
+        setIsFetchLoading(false);
       });
   };
 
@@ -97,41 +99,45 @@ function App() {
     navigate("/");
   }
 
-  const handleUpdateUser = async (email, name, setError) => {
-    setIsFetchLoading(true)
-      await api
-        .updateUser(email, name)
-        .then((data) => {
-          setCurrentUser(data);
-          setError("");
-        })
-        .catch((error) => {
-          setError(error.message);
-          console.log(error);
-        }).finally(() => {
-          setIsFetchLoading(false)
-        });
+  const handleUpdateUser = async (email, name, setError, setIsSuccess) => {
+    setIsFetchLoading(true);
+    await api
+      .updateUser(email, name)
+      .then((data) => {
+        setCurrentUser(data);
+        setError("");
+        setIsSuccess(true);
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error);
+      })
+      .finally(() => {
+        setIsFetchLoading(false);
+      });
   };
 
-  const handleSaveMovie = async (movieData) => {
+  const handleSaveMovie = async (movieData, setIsSaved) => {
     await api
       .createMovie(movieData)
       .then((res) => {
         setMyMovies([res, ...myMovies]);
+        setIsSaved(true);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const handleDeleteMovie = async (movieId) => {
+  const handleDeleteMovie = async (movieId, setIsSaved) => {
     await api
       .deleteMovie(movieId)
-      .then((res) => {
+      .then(() => {
         const moviesAfterDelete = myMovies.filter(
           (movie) => movie._id !== movieId,
         );
         setMyMovies(moviesAfterDelete);
+        setIsSaved(false);
       })
       .catch((error) => {
         console.log(error);
@@ -160,12 +166,22 @@ function App() {
         <Route
           path="/signup"
           element={
-            <Register onRegister={handleSignUp} isLoggedIn={isLoggedIn} isFetchLoading={isFetchLoading}/>
+            <Register
+              onRegister={handleSignUp}
+              isLoggedIn={isLoggedIn}
+              isFetchLoading={isFetchLoading}
+            />
           }
         />
         <Route
           path="/signin"
-          element={<Login onLogin={handleSignIn} isLoggedIn={isLoggedIn} isFetchLoading={isFetchLoading}/>}
+          element={
+            <Login
+              onLogin={handleSignIn}
+              isLoggedIn={isLoggedIn}
+              isFetchLoading={isFetchLoading}
+            />
+          }
         />
         <Route
           path="/profile"

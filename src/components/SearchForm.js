@@ -5,9 +5,9 @@ export function SearchForm({
   onFilterShortMovies,
   searchQuery,
   isFilterShortMovies,
-  isFetchLoading
+  isFetchLoading,
 }) {
-  const [searchText, setSearchText] = useState(searchQuery || '');
+  const [searchText, setSearchText] = useState(searchQuery || "");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -40,11 +40,15 @@ export function SearchForm({
             type="search"
             placeholder="Фильм"
             required
-            value={searchText || ''}
+            value={searchText || ""}
             onChange={(event) => setSearchText(event.target.value)}
             disabled={isFetchLoading}
           />
-          <button className="search__button" type="submit" disabled={isFetchLoading}></button>
+          <button
+            className="search__button"
+            type="submit"
+            disabled={isFetchLoading}
+          ></button>
           <span
             className={`search__input-error ${error && "search__input-error_visible"}`}
           >

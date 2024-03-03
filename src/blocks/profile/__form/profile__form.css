@@ -8,13 +8,12 @@
 
 @media screen and (max-width: 990px) {
   .profile__form {
-    margin-top: 80px;
+    margin-top: 76px;
   }
 }
 
 @media screen and (max-width: 690px) {
   .profile__form {
-    gap: 174px;
-    margin-top: 65px;
+    margin-top: 61px;
   }
 }

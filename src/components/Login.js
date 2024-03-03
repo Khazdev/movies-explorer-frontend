@@ -8,7 +8,13 @@ export function Login({ onLogin, isLoggedIn, isFetchLoading }) {
   useEffect(() => {
     isLoggedIn && navigate("/movies", { replace: true });
   });
-  return <AuthForm isRegister={false} onSubmit={onLogin} isFetchLoading={isFetchLoading} />;
+  return (
+    <AuthForm
+      isRegister={false}
+      onSubmit={onLogin}
+      isFetchLoading={isFetchLoading}
+    />
+  );
 }
 
 export default Login;

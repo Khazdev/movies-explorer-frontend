@@ -3,13 +3,27 @@ import React, { useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { useFormWithValidation } from "./ValidationHook";
 
-export function Profile({ onSignOut, onUpdateUser, windowWidth, isFetchLoading }) {
+export function Profile({
+  onSignOut,
+  onUpdateUser,
+  windowWidth,
+  isFetchLoading,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const [isEqualsInfo, setIsEqualsInfo] = useState(true);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
 
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 2000);
+    }
+  }, [isSuccess]);
 
   useEffect(() => {
     if (
@@ -30,10 +44,9 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth, isFetchLoading }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('123123')
     const validatedEmail = values.email;
     const validatedName = values.name;
-    onUpdateUser(validatedEmail, validatedName, setError);
+    onUpdateUser(validatedEmail, validatedName, setError, setIsSuccess);
   }
 
   return (
@@ -79,6 +92,11 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth, isFetchLoading }
             </li>
           </ul>
 
+          <span
+            className={`profile__notification ${isSuccess && "profile__notification_visible"}`}
+          >
+            Редактирование профиля выполнено успешно
+          </span>
           <span className={`profile__input-error`}>{error}</span>
 
           <div className="profile__buttons-container">
