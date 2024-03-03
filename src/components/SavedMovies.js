@@ -26,6 +26,7 @@ export function SavedMovies({ onDeleteMovie, savedMovies, windowWidth }) {
   };
   return (
     <>
+      <main className="main">
       <Header isSignedIn={true} windowWidth={windowWidth}></Header>
       <SearchForm
         onFilterShortMovies={handleSetShortMoviesFlag}
@@ -53,6 +54,7 @@ export function SavedMovies({ onDeleteMovie, savedMovies, windowWidth }) {
           windowWidth={windowWidth}
         />
       )}
+      </main>
       <Footer></Footer>
     </>
   );

@@ -110,6 +110,7 @@ export function Movies({
   return (
     <>
       <Header isSignedIn={isLoggedIn} windowWidth={windowWidth}></Header>
+      <main className="main">
       <SearchForm
         onSearch={handleSearch}
         onFilterShortMovies={handleSetShortMoviesFlag}
@@ -135,6 +136,7 @@ export function Movies({
           windowWidth={windowWidth}
         />
       )}
+      </main>
       <Footer></Footer>
     </>
   );
