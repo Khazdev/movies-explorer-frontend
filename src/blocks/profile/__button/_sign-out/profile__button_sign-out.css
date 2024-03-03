@@ -2,6 +2,7 @@
   color: #EE3465;
   font-weight: 500;
   margin-bottom: 70px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 990px) {

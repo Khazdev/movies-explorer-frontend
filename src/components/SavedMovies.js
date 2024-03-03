@@ -2,7 +2,7 @@ import SearchForm from "./SearchForm";
 import MoviesCardList from "./MoviesCardList";
 import Header from "./Header";
 import Footer from "./Footer";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   filterMoviesBySearchText,
   filterShortMovies,
@@ -10,20 +10,10 @@ import {
 
 export function SavedMovies({ onDeleteMovie, savedMovies, windowWidth }) {
   const [shortMoviesFlag, setShortMoviesFlag] = useState(false);
-  const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    setFilteredMovies(savedMovies);
-  }, []);
-
-  useEffect(() => {}, [filteredMovies]);
-
-  useEffect(() => {}, [shortMoviesFlag]);
 
   const handleDeleteMovie = (movieId) => {
     onDeleteMovie(movieId);
-    setFilteredMovies(savedMovies);
   };
   const handleSetShortMoviesFlag = (isActive) => {
     setShortMoviesFlag(isActive);
@@ -42,6 +32,7 @@ export function SavedMovies({ onDeleteMovie, savedMovies, windowWidth }) {
         onSearch={handleSearch}
         searchQuery={searchQuery}
         isFilterShortMovies={shortMoviesFlag}
+        isFetchLoading={false}
       ></SearchForm>
       {savedMovies && (
         <MoviesCardList

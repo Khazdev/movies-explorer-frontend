@@ -18,6 +18,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [myMovies, setMyMovies] = useState(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isFetchLoading, setIsFetchLoading] = useState(false);
 
   const handleResize = useCallback(() => {
     setWindowWidth(window.innerWidth);
@@ -35,11 +36,11 @@ function App() {
     handleValidateToken();
     if (isLoggedIn) {
       getSavedMovies();
-      navigate("/movies", { replace: true });
     }
   }, [isLoggedIn]);
 
   const handleSignUp = async (data, setError) => {
+    setIsFetchLoading(true)
     await api
       .signUp(data.name, data.email, data.password)
       .then(() => {
@@ -49,10 +50,13 @@ function App() {
       .catch((error) => {
         setError(error.message);
         console.log(error);
+      }).finally(()=>{
+        setIsFetchLoading(false)
       });
   };
 
   const handleSignIn = async (data, setError) => {
+    setIsFetchLoading(true)
     await api
       .signIn(data.email, data.password)
       .then((res) => {
@@ -66,6 +70,8 @@ function App() {
       .catch((error) => {
         setError(error.message);
         console.log(error);
+      }).finally(()=>{
+        setIsFetchLoading(false)
       });
   };
 
@@ -92,16 +98,19 @@ function App() {
   }
 
   const handleUpdateUser = async (email, name, setError) => {
-    await api
-      .updateUser(email, name)
-      .then((data) => {
-        setCurrentUser(data);
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.message);
-        console.log(error);
-      });
+    setIsFetchLoading(true)
+      await api
+        .updateUser(email, name)
+        .then((data) => {
+          setCurrentUser(data);
+          setError("");
+        })
+        .catch((error) => {
+          setError(error.message);
+          console.log(error);
+        }).finally(() => {
+          setIsFetchLoading(false)
+        });
   };
 
   const handleSaveMovie = async (movieData) => {
@@ -151,12 +160,12 @@ function App() {
         <Route
           path="/signup"
           element={
-            <Register onRegister={handleSignUp} isLoggedIn={isLoggedIn} />
+            <Register onRegister={handleSignUp} isLoggedIn={isLoggedIn} isFetchLoading={isFetchLoading}/>
           }
         />
         <Route
           path="/signin"
-          element={<Login onLogin={handleSignIn} isLoggedIn={isLoggedIn} />}
+          element={<Login onLogin={handleSignIn} isLoggedIn={isLoggedIn} isFetchLoading={isFetchLoading}/>}
         />
         <Route
           path="/profile"
@@ -167,6 +176,7 @@ function App() {
               onSignOut={handleSignOut}
               onUpdateUser={handleUpdateUser}
               windowWidth={windowWidth}
+              isFetchLoading={isFetchLoading}
             />
           }
         ></Route>
@@ -180,6 +190,7 @@ function App() {
               onDeleteMovie={handleDeleteMovie}
               savedMovies={myMovies}
               windowWidth={windowWidth}
+              isFetchLoading={isFetchLoading}
             />
           }
         ></Route>

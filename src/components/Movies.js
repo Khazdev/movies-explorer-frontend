@@ -11,35 +11,36 @@ import {
 } from "../utils/moviesUtils";
 
 export function Movies({
+  cachedMovies,
   isLoggedIn,
   onSaveMovie,
   onDeleteMovie,
   savedMovies,
-  windowWidth,
+  windowWidth
 }) {
   const [displayedCards, setDisplayedCards] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [allMovies, setAllMovies] = useState([]);
+  const [allMovies, setAllMovies] = useState(cachedMovies);
   const [shortMoviesFlag, setShortMoviesFlag] = useState(
     JSON.parse(localStorage.getItem("shortFilmToggle")),
   );
   const [filteredMovies, setFilteredMovies] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isFetchLoading, setIsFetchLoading] = useState(false);
 
   const handleSetShortMoviesFlag = (isActive) => {
     localStorage.setItem("shortFilmToggle", JSON.stringify(isActive));
     setShortMoviesFlag(isActive);
   };
-  useEffect(() => {}, [shortMoviesFlag]);
+  // useEffect(() => {}, [shortMoviesFlag]);
 
   function generateDisplayCardsCount() {
-    const screenWidth = windowWidth;
-    if (screenWidth >= 990) {
+    if (windowWidth >= 990) {
       setDisplayedCards(12);
-    } else if (screenWidth >= 768) {
+    } else if (windowWidth >= 768) {
       setDisplayedCards(8);
-    } else if (screenWidth >= 320) {
+    } else if (windowWidth >= 320) {
       setDisplayedCards(5);
     }
   }
@@ -74,24 +75,24 @@ export function Movies({
   };
 
   async function searchMovies(searchText) {
-    await moviesApi
-      .searchMovies()
-      .then((data) => {
-        localStorage.setItem("movies", JSON.stringify(data));
-        setAllMovies(data);
-        const filteredMovies = filterMoviesBySearchText(searchText, data);
-        setFilteredMovies(filteredMovies);
-        setLoading(false);
-        setSearchQuery(searchText);
-        localStorage.setItem("searchQuery", searchText);
-        localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
-        return filteredMovies;
-      })
-      .catch((error) => {
-        console.error("Error fetching allMovies:", error);
-        setLoading(false);
-        setError(error);
-      });
+      await moviesApi
+        .searchMovies()
+        .then((data) => {
+          localStorage.setItem("movies", JSON.stringify(data));
+          setAllMovies(data);
+          const filteredMovies = filterMoviesBySearchText(searchText, data);
+          setFilteredMovies(filteredMovies);
+          setLoading(false);
+          setIsFetchLoading(false)
+          setSearchQuery(searchText);
+          localStorage.setItem("searchQuery", searchText);
+          localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
+        })
+        .catch((error) => {
+          console.error("Error fetching allMovies:", error);
+          setLoading(false);
+          setError(error);
+        });
   }
 
   const handleSearch = (searchText) => {
@@ -103,6 +104,7 @@ export function Movies({
       localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
     } else {
       setLoading(true);
+      setIsFetchLoading(true)
       searchMovies(searchText);
     }
   };
@@ -114,6 +116,7 @@ export function Movies({
         onFilterShortMovies={handleSetShortMoviesFlag}
         searchQuery={searchQuery}
         isFilterShortMovies={shortMoviesFlag}
+        isFetchLoading={isFetchLoading}
       />
       <Preloader loading={loading}></Preloader>
 

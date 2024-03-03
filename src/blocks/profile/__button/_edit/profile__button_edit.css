@@ -5,5 +5,8 @@
   opacity: 100%
 }
 
+.profile__button_edit:hover {
+  opacity: 70%;
+}
 
 

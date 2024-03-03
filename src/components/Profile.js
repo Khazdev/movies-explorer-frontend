@@ -3,11 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { useFormWithValidation } from "./ValidationHook";
 
-export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
+export function Profile({ onSignOut, onUpdateUser, windowWidth, isFetchLoading }) {
   const currentUser = useContext(CurrentUserContext);
   const [isEqualsInfo, setIsEqualsInfo] = useState(true);
   const [error, setError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
@@ -31,11 +30,10 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log('123123')
     const validatedEmail = values.email;
     const validatedName = values.name;
-    setIsSubmitting(true);
     onUpdateUser(validatedEmail, validatedName, setError);
-    setIsSubmitting(false);
   }
 
   return (
@@ -58,7 +56,7 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
                   placeholder="Имя"
                   value={values.name || ""}
                   onChange={handleChange}
-                  disabled={isSubmitting}
+                  disabled={isFetchLoading}
                   required
                 />
               </div>
@@ -74,7 +72,7 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
                   value={values.email || ""}
                   required
                   onChange={handleChange}
-                  disabled={isSubmitting}
+                  disabled={isFetchLoading}
                 />
               </div>
               <span className="profile__input-error">{errors.email}</span>
@@ -86,8 +84,8 @@ export function Profile({ onSignOut, onUpdateUser, windowWidth }) {
           <div className="profile__buttons-container">
             <button
               type="submit"
-              className={`profile__button profile__button_edit ${(isEqualsInfo || !isValid) && "profile__button_edit_disabled"}`}
-              disabled={isSubmitting}
+              className={`profile__button profile__button_edit ${(isEqualsInfo || !isValid || isFetchLoading) && "profile__button_edit_disabled"}`}
+              disabled={isFetchLoading}
             >
               Редактировать
             </button>
