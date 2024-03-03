@@ -9,6 +9,7 @@
   background-color: transparent;
   margin-top: 184px;
   margin-bottom: 62px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 690px) {
@@ -18,4 +19,8 @@
     margin-top: 284px;
     margin-bottom: 30px;
   }
+}
+
+.not-found__back-button:hover {
+  opacity: 70%;
 }
