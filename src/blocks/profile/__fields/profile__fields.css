@@ -4,17 +4,18 @@
   list-style: none;
   gap: 20px;
   padding: 0;
-  margin: 0 0 218px;
+  margin: 0 0 201px;
 }
 
 @media screen and (max-width: 990px) {
   .profile__fields {
-    margin-bottom: 210px;
+    margin-bottom: 155px;
   }
 }
 
 @media screen and (max-width: 690px) {
   .profile__fields {
-    gap: 15px;
+    gap: 19px;
+    margin-bottom: 324px;
   }
 }

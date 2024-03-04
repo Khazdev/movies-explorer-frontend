@@ -1,32 +1,107 @@
-export function MoviesCard({saved, duration, movieName, image, allMoviesFlag}) {
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+function MoviesCard({
+  movie,
+  allMoviesFlag,
+  onSaveMovie,
+  onDeleteMovie,
+  movieId,
+  isLiked,
+}) {
+  const { nameRU, duration, image } = movie;
+  const imageUrl = allMoviesFlag
+    ? `https://api.nomoreparties.co` + image.url
+    : movie.thumbnail;
+  const [isSaved, setIsSaved] = useState(isLiked);
+  const convertMinutesToString = (minutes) => {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    return `${hours}ч ${remainingMinutes}м`;
+  };
+
+  function deleteMovie() {
+    onDeleteMovie(movieId, setIsSaved);
+  }
+
+  function saveMovie() {
+    const {
+      country,
+      director,
+      year,
+      description,
+      trailerLink,
+      nameRU,
+      nameEN,
+      id: movieId,
+    } = movie;
+    const thumbnail =
+      `https://api.nomoreparties.co` + image.formats.thumbnail.url;
+    onSaveMovie(
+      {
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image: imageUrl,
+        trailerLink,
+        nameRU,
+        nameEN,
+        thumbnail,
+        movieId,
+      },
+      setIsSaved,
+    );
+  }
+
+  const handleSaveMovie = () => {
+    if (isSaved) {
+      deleteMovie();
+    } else {
+      saveMovie();
+    }
+  };
 
   return (
     <li className="movie-card">
-      <img className='movie-card__photo'
-           src={image}
-      alt='превью изображение фильма'
-      ></img>
-      <div className="movie-card__info-container">
-        <span className="movie-card__description">{movieName}</span>
-        <span className="movie-card__duration">{duration}</span>
-      </div>
-      {allMoviesFlag ?
+      <Link
+        className="movie-card__link"
+        to={movie.trailerLink}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          className="movie-card__photo"
+          src={imageUrl}
+          alt="превью изображение фильма"
+        />
+        <div className="movie-card__info-container">
+          <span className="movie-card__description">{nameRU}</span>
+          <span className="movie-card__duration">
+            {convertMinutesToString(duration)}
+          </span>
+        </div>
+      </Link>
+      {allMoviesFlag ? (
         <button
           className={`movie-card__save-button movie-card__save-button_state_${
-            saved ? "saved":"not-saved"
+            isSaved ? "saved" : "not-saved"
           }`}
-          aria-label="Сохранить">
-          {!saved && 'Сохранить'}
+          aria-label="Сохранить"
+          onClick={handleSaveMovie}
+        >
+          {!isSaved && "Сохранить"}
         </button>
-      :
+      ) : (
         <button
-          className={`movie-card__del-button`}
-          aria-label="Удалить фильм">
-        </button>
-      }
-
+          className="movie-card__del-button"
+          aria-label="Удалить фильм"
+          onClick={deleteMovie}
+        ></button>
+      )}
     </li>
   );
 }
 
-export default MoviesCard
+export default MoviesCard;

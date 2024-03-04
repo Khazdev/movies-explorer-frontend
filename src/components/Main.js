@@ -7,20 +7,19 @@ import AboutMe from "./AboutMe";
 import Portfolio from "./Portfolio";
 import Footer from "./Footer";
 
-function Main() {
-
+function Main({isLoggedIn, windowWidth}) {
   return (
-    <main>
-      <Header
-        isSignedIn={true}
-      ></Header>
-      <Hero></Hero>
-      <About></About>
-      <Tech></Tech>
-      <AboutMe></AboutMe>
-      <Portfolio></Portfolio>
+    <>
+      <Header isSignedIn={isLoggedIn} windowWidth={windowWidth}></Header>
+      <main className="main">
+        <Hero></Hero>
+        <About></About>
+        <Tech></Tech>
+        <AboutMe></AboutMe>
+        <Portfolio></Portfolio>
+      </main>
       <Footer></Footer>
-    </main>
+    </>
   );
 }
 

@@ -21,6 +21,7 @@
 .auth-form__input:invalid {
   color: #EE3465;
 }
+
 .auth-form__input:valid {
   color: #fff;
 }

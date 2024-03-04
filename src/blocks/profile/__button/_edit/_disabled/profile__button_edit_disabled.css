@@ -1,0 +1,4 @@
+.profile__button_edit_disabled {
+  cursor: not-allowed;
+  opacity: 50%;
+}

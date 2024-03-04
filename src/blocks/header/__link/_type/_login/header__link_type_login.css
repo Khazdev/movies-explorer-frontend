@@ -13,6 +13,7 @@
   color: #000000;
   font-weight: 400;
 }
+
 @media screen and (max-width: 690px) {
   .header__link_type_login {
     font-size: 10px;

@@ -5,19 +5,226 @@ import Profile from "./Profile";
 import Movies from "./Movies";
 import SavedMovies from "./SavedMovies";
 import NotFound from "./NotFound";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
+import { api } from "../utils/MainApi";
+import { useCallback, useEffect, useState } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
+  const navigate = useNavigate();
+  const localLoggedIn = !!localStorage.getItem("loggedIn");
+  const [isLoggedIn, setIsLoggedIn] = useState(localLoggedIn);
+  const [currentUser, setCurrentUser] = useState({});
+  const [myMovies, setMyMovies] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isFetchLoading, setIsFetchLoading] = useState(false);
+
+  const handleResize = useCallback(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [handleResize]);
+
+  useEffect(() => {
+    handleValidateToken();
+    if (isLoggedIn) {
+      getSavedMovies();
+    }
+  }, [isLoggedIn]);
+
+  const handleSignUp = async (data, setError) => {
+    setIsFetchLoading(true);
+    await api
+      .signUp(data.name, data.email, data.password)
+      .then(() => {
+        handleSignIn(data);
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error);
+      })
+      .finally(() => {
+        setIsFetchLoading(false);
+      });
+  };
+
+  const handleSignIn = async (data, setError) => {
+    setIsFetchLoading(true);
+    await api
+      .signIn(data.email, data.password)
+      .then((res) => {
+        const jwt = res.token;
+        localStorage.setItem("jwt", jwt);
+        setIsLoggedIn(true);
+        localStorage.setItem("loggedIn", "true");
+        setError("");
+        navigate("/movies");
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error);
+      })
+      .finally(() => {
+        setIsFetchLoading(false);
+      });
+  };
+
+  const handleValidateToken = useCallback(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      api
+        .getCurrentUser()
+        .then((res) => {
+          localStorage.setItem("loggedIn", "true");
+          setCurrentUser(res);
+          setIsLoggedIn(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
+
+  function handleSignOut() {
+    localStorage.clear();
+    setIsLoggedIn(false);
+    navigate("/");
+  }
+
+  const handleUpdateUser = async (email, name, setError, setIsSuccess) => {
+    setIsFetchLoading(true);
+    await api
+      .updateUser(email, name)
+      .then((data) => {
+        setCurrentUser(data);
+        setError("");
+        setIsSuccess(true);
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error);
+      })
+      .finally(() => {
+        setIsFetchLoading(false);
+      });
+  };
+
+  const handleSaveMovie = async (movieData, setIsSaved) => {
+    await api
+      .createMovie(movieData)
+      .then((res) => {
+        setMyMovies([res, ...myMovies]);
+        setIsSaved(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleDeleteMovie = async (movieId, setIsSaved) => {
+    await api
+      .deleteMovie(movieId)
+      .then(() => {
+        const moviesAfterDelete = myMovies.filter(
+          (movie) => movie._id !== movieId,
+        );
+        setMyMovies(moviesAfterDelete);
+        setIsSaved(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getSavedMovies = async () => {
+    await api
+      .getMovies()
+      .then((movies) => {
+        setMyMovies(movies);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <Routes>
-      <Route exact path="/" element={<Main/>}/>
-      <Route path="/signup" element={<Register/>}/>
-      <Route path="/signin" element={<Login/>}/>
-      <Route path="/profile" element={<Profile/>}/>
-      <Route path="/movies" element={<Movies/>}/>
-      <Route path="/saved-movies" element={<SavedMovies/>}/>
-      <Route path="*" element={<NotFound/>}/>
-    </Routes>
+    <CurrentUserContext.Provider value={currentUser}>
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={<Main isLoggedIn={isLoggedIn} windowWidth={windowWidth} />}
+        ></Route>
+        <Route
+          path="/signup"
+          element={
+            <Register
+              onRegister={handleSignUp}
+              isLoggedIn={isLoggedIn}
+              isFetchLoading={isFetchLoading}
+            />
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <Login
+              onLogin={handleSignIn}
+              isLoggedIn={isLoggedIn}
+              isFetchLoading={isFetchLoading}
+            />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute
+              element={Profile}
+              isLoggedIn={isLoggedIn}
+              onSignOut={handleSignOut}
+              onUpdateUser={handleUpdateUser}
+              windowWidth={windowWidth}
+              isFetchLoading={isFetchLoading}
+            />
+          }
+        ></Route>
+        <Route
+          path="/movies"
+          element={
+            <ProtectedRoute
+              element={Movies}
+              isLoggedIn={isLoggedIn}
+              onSaveMovie={handleSaveMovie}
+              onDeleteMovie={handleDeleteMovie}
+              savedMovies={myMovies}
+              windowWidth={windowWidth}
+              isFetchLoading={isFetchLoading}
+            />
+          }
+        ></Route>
+        <Route
+          path="/saved-movies"
+          element={
+            <ProtectedRoute
+              element={SavedMovies}
+              isLoggedIn={isLoggedIn}
+              onDeleteMovie={handleDeleteMovie}
+              savedMovies={myMovies}
+              windowWidth={windowWidth}
+            />
+          }
+        ></Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </CurrentUserContext.Provider>
   );
 }
 

@@ -18,25 +18,31 @@ function Hero() {
     <section className="hero">
       <div className="hero__background">
         <h1 className="hero__title">
-          Учебный проект студента факультета Веб-разработки.</h1>
+          Учебный проект студента факультета Веб-разработки.
+        </h1>
         <ul className="hero__links">
           <li>
-            <Link className="hero__link"
-                  to="/"
-                  onClick={handleAboutLinkClick}
-            >О проекте</Link>
+            <Link className="hero__link" to="/" onClick={handleAboutLinkClick}>
+              О проекте
+            </Link>
           </li>
           <li>
-            <Link className="hero__link"
-                  to="#"
-                  onClick={handleTechnologyLinkClick}
-            >Технологии</Link>
+            <Link
+              className="hero__link"
+              to="#"
+              onClick={handleTechnologyLinkClick}
+            >
+              Технологии
+            </Link>
           </li>
           <li>
-            <Link className="hero__link"
-                  to="#"
-                  onClick={handleAboutMeLinkClick}
-            >Студент</Link>
+            <Link
+              className="hero__link"
+              to="#"
+              onClick={handleAboutMeLinkClick}
+            >
+              Студент
+            </Link>
           </li>
         </ul>
       </div>

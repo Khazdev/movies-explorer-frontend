@@ -22,6 +22,7 @@
   .about__header {
     margin-top: 90px;
   }
+
   .about__header::after {
     margin-top: 23px;
   }
@@ -33,6 +34,7 @@
     font-size: 18px;
     line-height: 22px;
   }
+
   .about__header::after {
     margin-top: 28px;
   }

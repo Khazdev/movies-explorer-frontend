@@ -1,11 +1,17 @@
-export function Preloader() {
+import React from "react";
 
-  return (
-    <section className="preloader">
-      <button className="preloader__button">Ещё
-      </button>
-    </section>
-  );
-}
+const Preloader = ({ loading }) => {
+  if (loading) {
+    return (
+      <div className="preloader">
+        <div className="preloader__container">
+          <span className="preloader__round"></span>
+        </div>
+      </div>
+    );
+  }
 
-export default Preloader
+  return null;
+};
+
+export default Preloader;

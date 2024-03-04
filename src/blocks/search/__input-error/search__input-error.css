@@ -1,0 +1,10 @@
+.search__input-error {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #EE3465;
+  min-height: 12px;
+  visibility: hidden;
+}
